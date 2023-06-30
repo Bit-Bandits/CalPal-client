@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+
+import Calories from './pages/Calories';
+import DashBoard from './pages/DashBoard';
+import Contributors from './pages/Contributors';
+import { useState } from 'react';
+import SignupForm from './components/SignupForm';
+
+
 
 function App() {
+  const [currentPage, setCurrentPage] = useState('SignupForm')
+  
+  function render(){
+    if (currentPage === 'Calories') {
+      return <Calories />;
+    }
+    if (currentPage === 'DashBoard') {
+      return <DashBoard />;
+    }
+    if (currentPage === 'Contributors') {
+      return <Contributors />;
+    }
+    if (currentPage === 'SignupForm') {
+       return <SignupForm />;
+       }
+  }
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <div>
+     <div className="App">
+      <Contributors 
+      currentPage={currentPage} 
+      setCurrentPage={setCurrentPage} 
+      />
+      <main>{render()}</main>
+      </div>
+     </div>
+
   );
-}
+     
+     }
 
 export default App;
