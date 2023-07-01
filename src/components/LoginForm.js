@@ -16,5 +16,5 @@ const LoginForm = () => {
         </Form>
     )
 }
-export default LoginForm
+export default LoginForm;
 
