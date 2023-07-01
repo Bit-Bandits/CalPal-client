@@ -1,6 +1,6 @@
 
 import Calories from './pages/Calories';
-import DashBoard from './pages/DashBoard';
+import DashBoard from './pages/Dashboard';
 import Contributors from './pages/Contributors';
 import { useState } from 'react';
 import SignupForm from './components/SignupForm';
@@ -14,7 +14,7 @@ function App() {
     if (currentPage === 'Calories') {
       return <Calories />;
     }
-    if (currentPage === 'DashBoard') {
+    if (currentPage === 'Dashboard') {
       return <DashBoard />;
     }
     if (currentPage === 'Contributors') {
