@@ -32,8 +32,6 @@ function Contributors  () {
                 <button>{avatars.linkedin}</button>
         
   
-                {/* <p>text</p>
-                <button>linkedin</button> */}
 
             </Space>
             )
