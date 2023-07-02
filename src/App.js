@@ -12,13 +12,13 @@ function App() {
 
   return (
     <div className="App">
-      {/* <Login /> */}
+      <Login />
       {/* <div>
       <Navbar />
       </div> */}
-      <div>
-      <Calories />
-      </div>
+      {/* <div>
+      <Calories /> */}
+      {/* </div> */}
 
       
     </div>
