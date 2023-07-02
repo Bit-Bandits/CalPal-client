@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react'; // Imports React libraries as well as useEffect and useState
 
 function Calories () {
     const [data, setData] = useState(null);
