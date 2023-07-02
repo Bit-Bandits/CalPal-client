@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import './App.css';
 import Login from './Components/Login';
+import Navbar from './Components/Navbar';
+import Calories from "./pages/Calories";
 function App() {
   //const [currentForm, setCurrentForm] = useState('login');
 
@@ -10,7 +12,15 @@ function App() {
 
   return (
     <div className="App">
-      <Login />
+      {/* <Login /> */}
+      {/* <div>
+      <Navbar />
+      </div> */}
+      <div>
+      <Calories />
+      </div>
+
+      
     </div>
   );
 }
