@@ -3,16 +3,23 @@ import './App.css';
 import Login from './Components/Login';
 import Navbar from './Components/Navbar';
 import Calories from "./pages/Calories";
-function App() {
-  //const [currentForm, setCurrentForm] = useState('login');
+import { Register } from "./Components/Signup";
 
-  //const toggleForm = (formName) => {
-   // setCurrentForm(formName);
-  //}
+function App() {
+
+
+  const [currentForm, setCurrentForm] = useState('login');
+
+  const toggleForm = (formName) => {
+    setCurrentForm(formName);
+  }
 
   return (
     <div className="App">
-      <Login />
+       {
+        currentForm === "login" ? <Login onFormSwitch={toggleForm} /> : <Register onFormSwitch={toggleForm} />
+      }
+      
       {/* <div>
       <Navbar />
       </div> */}
