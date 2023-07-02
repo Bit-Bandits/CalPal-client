@@ -43,11 +43,13 @@ a button in the bottom of the dashboard to allow user enter his daliy calories
 import React from 'react';
 import LoginForm from './components/LoginForm';
 import './App.css';
+import Contributors from './pages/Contributors';
 
 function App() {
   return (
     <div className="App">
       <LoginForm />
+      
     </div>
   );
 }
