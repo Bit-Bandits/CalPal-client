@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-const fetch = require('node-fetch')
 
 function Calories () {
     const [data, setData] = useState(null);

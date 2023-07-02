@@ -1,3 +1,6 @@
+/*
+temp. file for testing
+*/
 import React from 'react';
 
 export default function Preferences() {
