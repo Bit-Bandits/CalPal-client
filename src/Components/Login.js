@@ -7,7 +7,19 @@ export const Login = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(email);
-    }
+        fetch('http://localhost:3001/graphql', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ query: `mutation { login(email: "${email}", password: "${pass}")  { token } }` })
+    } ) .then(res => res.json()).then(data => {console.log(data)
+        localStorage.setItem('id_token', data.data.login.token);
+    // window.location.replace('http://localhost:3000/dashboard')
+}).catch(err => console.log(err))}
+
+    
+
+
+    
 
     return (
         <div className="auth-form-container">
