@@ -8,7 +8,11 @@ export const Register = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(email);
-    }
+        fetch('http://localhost:3001/graphql', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ query: `mutation { addUser(email: "${email}", password: "${pass}", username: "${name}") { token } }` })
+    } ) .then(res => res.json()).then(data => {console.log(data)})}
 
     return (
         <div className="auth-form-container">
@@ -26,3 +30,4 @@ export const Register = (props) => {
     </div>
     )
 }
+
