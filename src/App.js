@@ -5,6 +5,8 @@ import Navbar from './Components/Navbar';
 import Calories from "./pages/Calories";
 import { Register } from "./Components/Signup";
 
+import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom'
+
 function App() {
 
 
@@ -15,7 +17,19 @@ function App() {
   }
 
   return (
+    
     <div className="App">
+      <BrowserRouter>
+        <div>
+          <nav>
+            <NavLink to='calories'>Calories</NavLink>
+          </nav>
+          <Routes>
+            <Route path='calories' element={<Calories />} />
+          </Routes>
+        </div>
+      </BrowserRouter>
+
        {
         currentForm === "login" ? <Login onFormSwitch={toggleForm} /> : <Register onFormSwitch={toggleForm} />
       }
