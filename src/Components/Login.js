@@ -18,8 +18,6 @@ export const Login = (props) => {
         }).catch(err => console.log(err))
     }
 
-
-
     return (
         <div className="auth-form-container">
             <h2>Login</h2>
