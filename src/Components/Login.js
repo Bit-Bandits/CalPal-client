@@ -14,10 +14,9 @@ export const Login = (props) => {
         }).then(res => res.json()).then(data => {
             console.log(data)
             localStorage.setItem('id_token', data.data.login.token);
-            // window.location.replace('http://localhost:3000/dashboard')
+            window.location.pathname='/dashboard'
         }).catch(err => console.log(err))
     }
-
 
     return (
         <div className="auth-form-container">
@@ -29,7 +28,7 @@ export const Login = (props) => {
                 <input value={pass} onChange={(e) => setPass(e.target.value)} type="password" placeholder="********" id="password" name="password" />
                 <button type="submit">Log In</button>
             </form>
-            <button className="link-btn" onClick={() => props.onFormSwitch('register')}>Don't have an account? Register here.</button>
+            <button className="link-btn" onClick={() => props.onFormSwitch()}>Don't have an account? Register here.</button>
         </div>
     )
 }
