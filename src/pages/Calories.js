@@ -21,6 +21,11 @@ function Calories () {
         .then(response => response.json())
         .then(data => {
             setData(data)
+            console.log(data)
+            const foodName = data.text;
+            const kCal = data.parsed[0].food.nutrients.ENERC_KCAL;
+            console.log('SEARCHED FOOD:', foodName);
+            console.log('CALORIES:', kCal);
         })
         .catch(error => console.error('Error:', error));
     };
@@ -32,7 +37,7 @@ function Calories () {
                 <input id="food-search" type='text' value={food} onChange={handleFoodChange} />
                 <button type='submit'>Search</button>
             </form>
-            {data && <pre>{JSON.stringify(data, null, 2)}</pre>}
+            {data && <pre>{JSON.stringify(data.parsed[0].food.nutrients.ENERC_KCAL, null, 2)}</pre>}
         </div>
     );
 };
