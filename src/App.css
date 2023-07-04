@@ -5,7 +5,8 @@
   align-items: center;
   justify-content: center;
   color: rgb(11, 24, 13);
-  background-image: url("../src/assets/images/Screen\ Shot\ 2023-07-01\ at\ 9.27.14\ PM.png")
+  background-color: rgb(106, 233, 255);
+  /* background-image: url("../src/assets/images/Screen\ Shot\ 2023-07-01\ at\ 9.27.14\ PM.png") */
 }
 
 .auth-form-container, .login-form, .register-form {
