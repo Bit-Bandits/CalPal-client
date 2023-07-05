@@ -1,4 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
+
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  createHttpLink,
+} from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
 import './App.css';
 import Login from './Components/Login';
 import Navbar from './Components/Navbar';
@@ -7,8 +15,30 @@ import Calories from "./pages/Calories";
 import { Register } from "./Components/Signup";
 import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom'
 
-function App() {
 
+const httpLink = createHttpLink({
+  uri: '/graphql',
+});
+
+const authLink = setContext((_, { headers }) => {
+  // get the authentication token from local storage if it exists
+  const token = localStorage.getItem('id_token');
+  // return the headers to the context so httpLink can read them
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    },
+  };
+});
+
+const client = new ApolloClient({
+  link: authLink.concat(httpLink),
+  cache: new InMemoryCache(),
+});
+
+function App() {
+  
   console.log(window.localStorage.getItem('id_token'))
   useEffect(() => {
 
@@ -16,28 +46,27 @@ function App() {
       window.localStorage.setItem('id_token', 'null')
       window.location.pathname = '/login'
     }
-    if (window.location.pathname === '/') {
-      window.location.pathname = '/login'
-    }
+    // if (window.location.pathname === '/') {
+    //   window.location.pathname = '/login'
+    // }
   }, [])
   const toggleForm = () => {
     if (window.location.pathname === '/login') {
       window.location.pathname = '/register'
     } else { window.location.pathname = '/login' }
   }
-
   return (
-
-    <div className="App">
-      <BrowserRouter>
+    <ApolloProvider client={client}>
+  <BrowserRouter>
         <div>
           <nav>
+            <Navbar />
             <NavLink to='calories'>Calories</NavLink>
           </nav>
           <Routes>
             <Route path='calories' element={<Calories />} />
             <Route path='login' element={<Login onFormSwitch={toggleForm} />} />
-            <Route path='dashboard' element={<Dashboard />} />
+            <Route path='/' element={<Dashboard />} />
             <Route path='register' element={<Register onFormSwitch={toggleForm} />} />
 
 
@@ -45,17 +74,7 @@ function App() {
         </div>
       </BrowserRouter>
 
-
-
-      {/* <div>
-      <Navbar />
-      </div> */}
-      {/* <div>
-      <Calories /> */}
-      {/* </div> */}
-
-
-    </div>
+    </ApolloProvider>
   );
 }
 

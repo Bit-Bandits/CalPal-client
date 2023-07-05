@@ -1,19 +1,43 @@
 import React, { useState } from "react";
+import Auth from "../utils/auth";
+
+import { ADD_USER } from "../utils/mutations";
+import { useMutation } from "@apollo/client";
 
 export const Register = (props) => {
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
     const [name, setName] = useState('');
-    const handleSubmit = (e) => {
+
+    const [addUser] = useMutation(ADD_USER);
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(email);
-        fetch('http://localhost:3001/graphql', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ query: `mutation { addUser(email: "${email}", password: "${pass}", username: "${name}") { token } }` })
-        }).then(res => res.json()).then(data => { console.log(data)
-            window.location.pathname='/login'
-         })
+        console.log(email, pass, name);
+
+
+        const response = await addUser({
+            variables: {
+                "user": {
+                    "username": name,
+                    "email": email,
+                    "password": pass
+                }
+            }
+        });
+
+        const token = response.data.addUser.token;
+
+        Auth.login(token)
+
+
+        // fetch('http://localhost:3001/graphql', {
+        //     method: 'POST',
+        //     headers: { 'Content-Type': 'application/json' },
+        //     body: JSON.stringify({ query: `mutation { addUser(email: "${email}", password: "${pass}", username: "${name}") { token } }` })
+        // }).then(res => res.json()).then(data => { console.log(data)
+        //     window.location.pathname='/login'
+        //  })
     }
     return (
         <div className="auth-form-container">
