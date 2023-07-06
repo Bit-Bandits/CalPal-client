@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react'; // Imports React libraries a
 
 function Calories() {
     const [foodData, setFoodData] = useState([]);
+    const [savedFoods, setSavedFoods] = useState([]); // new state variable for saved foods
     const [food, setFood] = useState('');
-    const [totalCalories, setTotalCalories] = useState(0);
+    const [totalCalories, setTotalCalories] = useState(0); // new state variables for adding total calories
 
         // targets the value(food) in which the user is looking for
         const handleFoodChange = (event) => {
@@ -13,6 +14,7 @@ function Calories() {
         // handles the submit in our search to fetch data from api
         const handleFormSubmit = (event) => {
             event.preventDefault();
+            setFoodData([]); // clear previous results
             fetchFoodData();
         };
 
@@ -27,43 +29,77 @@ function Calories() {
             const response = await fetch(apiUrl)
             const data = await response.json()
             console.log('APICall:', data.hints);
-            setFoodData(data.hints.map(item => ({ ...item, quantity: 1 })))
+            setFoodData(data.hints.map(item => ({ ...item, servings: 1 , unit: 'gram' })))
         } catch (e) {
             console.log(e)
         }
     }
 
-    const handleQuantityChange = (index, value) => {
-        setFoodData(foodData.map((item, i) => i === index ? { ...item, quantity: value} : item))
+    const handleServingsChange = (index, value) => {
+        setFoodData(foodData.map((item, i) => i === index ? { ...item, servings: value} : item))
     }
 
-    const handleSaveFood = (calories, quantity) => {
-        setTotalCalories(totalCalories + (calories * quantity));
+    const handleUnitChange = (index, value) => {
+        setFoodData(foodData.map((item, i) => i === index ? { ...item, unit: value} : item))
+    }
+
+    const handleSaveFood = (food) => {
+        const calories = food.food.nutrients.ENERC_KCAL * food.servings;
+        setTotalCalories(totalCalories + calories);
+        setSavedFoods([...savedFoods, { ...food,  calories }]);
     }
 
     // console.table(foodData.hints)
     const list = foodData.map((food, index) => {
-        const calories = (food.food.nutrients.ENERC_KCAL * food.quantity).toFixed(2);
+        const calories = (food.food.nutrients.ENERC_KCAL * food.servings).toFixed(2);
         return (
-            <li key={food.food.foodId}>
+            <li className='calorie-item' key={food.food.foodId}>
                 {food.food.label} | Calories: {calories}
-                <input type="number" value={food.quantity} onChange={(e) => handleQuantityChange(index, e.target.value)} min='1' />
-                <button onClick={() => handleSaveFood(food.food.nutrients.ENERC_KCAL, food.quantity)}>Save</button>
+                <input 
+                    type="number" 
+                    value={food.servings} 
+                    onChange={(e) => handleServingsChange(index, e.target.value)} 
+                    min='1' 
+                />
+                <select value={food.unit} onChange={(e) => handleUnitChange(index, e.target.value)}>
+                    <option value="gram">Gram</option>
+                    <option value="lb">Pound</option>
+                    <option value="oz">Ounce</option>
+                    <option value="fl oz">Fl Oz</option>
+                </select>
+                <button onClick={() => handleSaveFood(food)}>Save</button>
             </li>
 
         )
     })
+
+    const savedFoodList = savedFoods.map((food, index) => {
+        return (
+            <li key={index}>
+                {food.food.label} | Servings: {food.servings} | Calories: {food.calories}
+            </li>
+        )
+    })
     return (
-        <div>
-        <form onSubmit={handleFormSubmit}>
-            <label htmlFor='food-search'>Search for a food:</label>
-            <input id="food-search" type='text' value={food} onChange={handleFoodChange} />
+        <div className='calorie-container'>
+        <form className='search-form' onSubmit={handleFormSubmit}>
+            <input 
+                id="food-search" 
+                type='text' 
+                value={food} 
+                onChange={handleFoodChange} 
+                placeholder='Search for a food...'
+            />
             <button type='submit'>Search</button>
         </form>
         <ul>
             {list}
         </ul>
-        <p>Total Calories: {totalCalories}</p>
+        <p className="calorie-total">Total Calories: {totalCalories}</p>
+        <h3>Saved Foods</h3>
+        <ul>
+            {savedFoodList}
+        </ul>
     </div>
     )
 

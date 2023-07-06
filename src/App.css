@@ -49,3 +49,100 @@ button {
   color: rgb(28, 175, 82);
   text-decoration: underline;
 }
+
+/* Here is the css styling for the calorie handling section*/
+
+.calorie-container {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  border: 1px solid rgb(12, 226, 66);
+  border-radius: 10px;
+  margin: 0.5rem;
+}
+
+.calorie-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  border-bottom: 1px solid #ddd;
+}
+
+.calorie-item:last-child {
+  border-bottom: none;
+}
+
+.calorie-item input,
+.calorie-item select {
+  padding: 0.25;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.calorie-item input,
+.calorie-item select,
+.calorie-item button {
+  margin-left: 0.5rem;
+}
+
+.calorie-total {
+  margin-top: 1rem;
+  font-weight: bold;
+}
+
+/* Here is styling for search bar*/
+
+.search-form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 10px;
+  background-color: rgb(240, 240, 240);
+  margin-bottom: 1rem;
+}
+
+.search-form input {
+  flex-grow: 1;
+  margin-right: 0.5rem;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.search-form button {
+  padding: 0.5rem 1 rem;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(13, 165, 49);
+  color: #fff;
+}
+
+/* Added styling for the saved foods section here */
+.saved-foods {
+  margin-top: 2rem;
+  padding: 1rem;
+  border: 1px solid rgb(12, 226, 66);
+  border-radius: 10px;
+  background-color: rgb(240, 240, 240);
+}
+
+.saved-foods h3 {
+  margin-bottom: 1rem;
+  color: rgb(11, 24, 13);
+}
+
+.saved-foods ul {
+  list-style: none;
+  padding: 0;
+}
+
+.saved-foods ul li {
+  padding: 0.5rem;
+  border-bottom: 1px solid #ddd;
+}
+
+.saved-foods ul li:last-child {
+  border-bottom: none;
+}
