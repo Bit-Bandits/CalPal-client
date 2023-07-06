@@ -27,7 +27,7 @@ function Calories() {
             const response = await fetch(apiUrl)
             const data = await response.json()
             console.log('APICall:', data.hints);
-            setFoodData(data.hints.map(item => ({ ...item, quantity: 1 })))
+            setFoodData(data.hints.map(item => ({ ...item, quantity: 1, unit: 'gram', servingSize: 1 })))
         } catch (e) {
             console.log(e)
         }
@@ -37,18 +37,40 @@ function Calories() {
         setFoodData(foodData.map((item, i) => i === index ? { ...item, quantity: value} : item))
     }
 
-    const handleSaveFood = (calories, quantity) => {
-        setTotalCalories(totalCalories + (calories * quantity));
+    const handleUnitChange = (index, value) => {
+        setFoodData(foodData.map((item, i) => i === index ? { ...item, unit: value} : item))
+    }
+
+    const handleServingSizeChange = (index, value) => {
+        setFoodData(foodData.map((item, i) => i === index ? { ...item, servingSize: value } : item))
+    }
+
+    const handleSaveFood = (calories, quantity, servingSize) => {
+        setTotalCalories(totalCalories + (calories * quantity * servingSize));
     }
 
     // console.table(foodData.hints)
     const list = foodData.map((food, index) => {
-        const calories = (food.food.nutrients.ENERC_KCAL * food.quantity).toFixed(2);
+        const calories = (food.food.nutrients.ENERC_KCAL * food.quantity * food.servingSize).toFixed(2);
         return (
             <li key={food.food.foodId}>
                 {food.food.label} | Calories: {calories}
-                <input type="number" value={food.quantity} onChange={(e) => handleQuantityChange(index, e.target.value)} min='1' />
-                <button onClick={() => handleSaveFood(food.food.nutrients.ENERC_KCAL, food.quantity)}>Save</button>
+                <input 
+                    type="number" value={food.quantity} onChange={(e) => handleQuantityChange(index, e.target.value)} 
+                    min='1' 
+                />
+                <select value={food.unit} onChange={(e) => handleUnitChange(index, e.target.value)}>
+                    <option value="gram">Gram</option>
+                    <option value="lb">Pound</option>
+                </select>
+                <input
+                    type="number"
+                    value={food.servingSize}
+                    onChange={(e) => handleServingSizeChange(index, e.target.value)}
+                    min="0.01"
+                    step="0.01"
+                />
+                <button onClick={() => handleSaveFood(food.food.nutrients.ENERC_KCAL, food.quantity, food.servingSize)}>Save</button>
             </li>
 
         )
