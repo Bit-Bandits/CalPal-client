@@ -74,6 +74,13 @@ button {
 }
 
 .calorie-item input,
+.calorie-item select {
+  padding: 0.25;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.calorie-item input,
 .calorie-item select,
 .calorie-item button {
   margin-left: 0.5rem;
@@ -85,3 +92,29 @@ button {
 }
 
 /* Here is styling for search bar*/
+
+.search-form {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 10px;
+  background-color: rgb(240, 240, 240);
+  margin-bottom: 1rem;
+}
+
+.search-form input {
+  flex-grow: 1;
+  margin-right: 0.5rem;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.search-form button {
+  padding: 0.5rem 1 rem;
+  border: none;
+  border-radius: 5px;
+  background-color: rgb(13, 165, 49);
+  color: #fff;
+}

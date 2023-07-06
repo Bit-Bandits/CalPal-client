@@ -70,9 +70,14 @@ function Calories() {
     })
     return (
         <div className='calorie-container'>
-        <form onSubmit={handleFormSubmit}>
-            <label htmlFor='food-search'>Search for a food:</label>
-            <input id="food-search" type='text' value={food} onChange={handleFoodChange} />
+        <form className='search-form' onSubmit={handleFormSubmit}>
+            <input 
+                id="food-search" 
+                type='text' 
+                value={food} 
+                onChange={handleFoodChange} 
+                placeholder='Search for a food...'
+            />
             <button type='submit'>Search</button>
         </form>
         <ul>
