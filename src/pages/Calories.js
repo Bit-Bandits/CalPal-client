@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'; // Imports React libraries as well as useEffect and useState
 
 function Calories() {
-    const [foodData, getFoodData] = useState([]);
+    const [foodData, setFoodData] = useState([]);
     const [food, setFood] = useState('');
+    const [totalCalories, setTotalCalories] = useState(0);
 
         // targets the value(food) in which the user is looking for
         const handleFoodChange = (event) => {
@@ -26,16 +27,28 @@ function Calories() {
             const response = await fetch(apiUrl)
             const data = await response.json()
             console.log('APICall:', data.hints);
-            getFoodData(data.hints)
+            setFoodData(data.hints.map(item => ({ ...item, quantity: 1 })))
         } catch (e) {
             console.log(e)
         }
     }
-    console.table(foodData.hints)
-    const list = foodData.map(food => {
+
+    const handleQuantityChange = (index, value) => {
+        setFoodData(foodData.map((item, i) => i === index ? { ...item, quantity: value} : item))
+    }
+
+    const handleSaveFood = (calories, quantity) => {
+        setTotalCalories(totalCalories + (calories * quantity));
+    }
+
+    // console.table(foodData.hints)
+    const list = foodData.map((food, index) => {
+        const calories = (food.food.nutrients.ENERC_KCAL * food.quantity).toFixed(2);
         return (
             <li key={food.food.foodId}>
-                {food.food.label} | <button type="submit">Save</button>
+                {food.food.label} | Calories: {calories}
+                <input type="number" value={food.quantity} onChange={(e) => handleQuantityChange(index, e.target.value)} min='1' />
+                <button onClick={() => handleSaveFood(food.food.nutrients.ENERC_KCAL, document.getElementById(`quantity${index}`).value)}>Save</button>
             </li>
 
         )
@@ -50,6 +63,7 @@ function Calories() {
         <ul>
             {list}
         </ul>
+        <p>Total Calories: {totalCalories}</p>
     </div>
     )
 
