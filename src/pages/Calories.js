@@ -48,7 +48,7 @@ function Calories() {
             <li key={food.food.foodId}>
                 {food.food.label} | Calories: {calories}
                 <input type="number" value={food.quantity} onChange={(e) => handleQuantityChange(index, e.target.value)} min='1' />
-                <button onClick={() => handleSaveFood(food.food.nutrients.ENERC_KCAL, document.getElementById(`quantity${index}`).value)}>Save</button>
+                <button onClick={() => handleSaveFood(food.food.nutrients.ENERC_KCAL, food.quantity)}>Save</button>
             </li>
 
         )
