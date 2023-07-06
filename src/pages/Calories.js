@@ -2,8 +2,9 @@ import React, { useEffect, useState } from 'react'; // Imports React libraries a
 
 function Calories() {
     const [foodData, setFoodData] = useState([]);
+    const [savedFoods, setSavedFoods] = useState([]); // new state variable for saved foods
     const [food, setFood] = useState('');
-    const [totalCalories, setTotalCalories] = useState(0);
+    const [totalCalories, setTotalCalories] = useState(0); // new state variables for adding total calories
 
         // targets the value(food) in which the user is looking for
         const handleFoodChange = (event) => {
@@ -13,6 +14,7 @@ function Calories() {
         // handles the submit in our search to fetch data from api
         const handleFormSubmit = (event) => {
             event.preventDefault();
+            setFoodData([]); // clear previous results
             fetchFoodData();
         };
 
@@ -41,8 +43,10 @@ function Calories() {
         setFoodData(foodData.map((item, i) => i === index ? { ...item, unit: value} : item))
     }
 
-    const handleSaveFood = (calories, servings) => {
-        setTotalCalories(totalCalories + (calories * servings));
+    const handleSaveFood = (food) => {
+        const calories = food.food.nutrients.ENERC_KCAL * food.servings;
+        setTotalCalories(totalCalories + calories);
+        setSavedFoods([...savedFoods, { ...food,  calories }]);
     }
 
     // console.table(foodData.hints)
@@ -63,9 +67,17 @@ function Calories() {
                     <option value="oz">Ounce</option>
                     <option value="fl oz">Fl Oz</option>
                 </select>
-                <button onClick={() => handleSaveFood(food.food.nutrients.ENERC_KCAL, food.servings)}>Save</button>
+                <button onClick={() => handleSaveFood(food)}>Save</button>
             </li>
 
+        )
+    })
+
+    const savedFoodList = savedFoods.map((food, index) => {
+        return (
+            <li key={index}>
+                {food.food.label} | Servings: {food.servings} | Calories: {food.calories}
+            </li>
         )
     })
     return (
@@ -84,6 +96,10 @@ function Calories() {
             {list}
         </ul>
         <p className="calorie-total">Total Calories: {totalCalories}</p>
+        <h3>Saved Foods</h3>
+        <ul>
+            {savedFoodList}
+        </ul>
     </div>
     )
 
