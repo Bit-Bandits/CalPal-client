@@ -49,7 +49,7 @@ function Calories() {
     const list = foodData.map((food, index) => {
         const calories = (food.food.nutrients.ENERC_KCAL * food.servings).toFixed(2);
         return (
-            <li key={food.food.foodId}>
+            <li className='calorie-item' key={food.food.foodId}>
                 {food.food.label} | Calories: {calories}
                 <input 
                     type="number" 
@@ -69,7 +69,7 @@ function Calories() {
         )
     })
     return (
-        <div>
+        <div className='calorie-container'>
         <form onSubmit={handleFormSubmit}>
             <label htmlFor='food-search'>Search for a food:</label>
             <input id="food-search" type='text' value={food} onChange={handleFoodChange} />
@@ -78,7 +78,7 @@ function Calories() {
         <ul>
             {list}
         </ul>
-        <p>Total Calories: {totalCalories}</p>
+        <p className="calorie-total">Total Calories: {totalCalories}</p>
     </div>
     )
 

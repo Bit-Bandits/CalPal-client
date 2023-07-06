@@ -49,3 +49,39 @@ button {
   color: rgb(28, 175, 82);
   text-decoration: underline;
 }
+
+/* Here is the css styling for the calorie handling section*/
+
+.calorie-container {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  border: 1px solid rgb(12, 226, 66);
+  border-radius: 10px;
+  margin: 0.5rem;
+}
+
+.calorie-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem;
+  border-bottom: 1px solid #ddd;
+}
+
+.calorie-item:last-child {
+  border-bottom: none;
+}
+
+.calorie-item input,
+.calorie-item select,
+.calorie-item button {
+  margin-left: 0.5rem;
+}
+
+.calorie-total {
+  margin-top: 1rem;
+  font-weight: bold;
+}
+
+/* Here is styling for search bar*/
