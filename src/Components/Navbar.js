@@ -21,12 +21,18 @@ const NavBar = () => {
         </Menu>
         <div>
           {/* <Button type="primary" style={{ marginRight: '10px' }}>Logout</Button> */}
+          {console.log(Auth.loggedIn())};
           {Auth.loggedIn() ? (
             <>
+
               <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
             </>
           ) : (
-            <Nav.Link onClick={() => setShowModal(true)}>Login/Sign Up</Nav.Link>
+            <Nav.Link onClick={() => {
+              setShowModal(true)
+              window.location.pathname = '/login'
+            }
+          }>Login</Nav.Link>
           )}
         </div>
       </Header>
