@@ -61,7 +61,6 @@ function App() {
         <div>
           <nav>
             <Navbar />
-            <NavLink to='calories'>Calories</NavLink>
           </nav>
           <Routes>
             <Route path='calories' element={<Calories />} />
