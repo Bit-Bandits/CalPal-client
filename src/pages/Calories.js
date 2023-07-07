@@ -29,19 +29,25 @@ function Calories() {
             const response = await fetch(apiUrl)
             const data = await response.json()
             console.log('APICall:', data.hints);
-            setFoodData(data.hints.map(item => ({ ...item, servings: 1 , unit: 'gram' })))
+            // setFoodData(data.hints.map(item => ({ ...item, servings: 1 , unit: 'gram' })))
+            setFoodData(data.hints.map(item => ({ ...item, servings: 1 })))
         } catch (e) {
             console.log(e)
         }
+    }
+
+    const handleDeleteFood = (foodToDelete) => {
+        setSavedFoods(savedFoods.filter(food => food !== foodToDelete));
+        setTotalCalories(totalCalories - foodToDelete.calories);
     }
 
     const handleServingsChange = (index, value) => {
         setFoodData(foodData.map((item, i) => i === index ? { ...item, servings: value} : item))
     }
 
-    const handleUnitChange = (index, value) => {
-        setFoodData(foodData.map((item, i) => i === index ? { ...item, unit: value} : item))
-    }
+    // const handleUnitChange = (index, value) => {
+    //     setFoodData(foodData.map((item, i) => i === index ? { ...item, unit: value} : item))
+    // }
 
     const handleSaveFood = (food) => {
         const calories = food.food.nutrients.ENERC_KCAL * food.servings;
@@ -61,12 +67,12 @@ function Calories() {
                     onChange={(e) => handleServingsChange(index, e.target.value)} 
                     min='1' 
                 />
-                <select value={food.unit} onChange={(e) => handleUnitChange(index, e.target.value)}>
+                {/* <select value={food.unit} onChange={(e) => handleUnitChange(index, e.target.value)}>
                     <option value="gram">Gram</option>
                     <option value="lb">Pound</option>
                     <option value="oz">Ounce</option>
                     <option value="fl oz">Fl Oz</option>
-                </select>
+                </select> */} 
                 <button onClick={() => handleSaveFood(food)}>Save</button>
             </li>
 
@@ -77,12 +83,14 @@ function Calories() {
         return (
             <li key={index}>
                 {food.food.label} | Servings: {food.servings} | Calories: {food.calories}
+                <button onClick={() => handleDeleteFood(food)}>Delete</button>
             </li>
         )
     })
     return (
-        <div className='calorie-container'>
-        <form className='search-form' onSubmit={handleFormSubmit}>
+     <div className='foods-container'>
+       <div className='search-results'>
+         <form className='search-form' onSubmit={handleFormSubmit}>
             <input 
                 id="food-search" 
                 type='text' 
@@ -95,11 +103,15 @@ function Calories() {
         <ul>
             {list}
         </ul>
-        <p className="calorie-total">Total Calories: {totalCalories}</p>
+        </div>
+
+        <div className='saved-foods'>
         <h3>Saved Foods</h3>
         <ul>
             {savedFoodList}
+            <p className="calorie-total">Total Calories: {totalCalories}</p>
         </ul>
+        </div>
     </div>
     )
 
