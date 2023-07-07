@@ -17,7 +17,7 @@ import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom'
 
 
 const httpLink = createHttpLink({
-  uri: '/graphql',
+  uri: 'https://cal-pal-server-273e253c14e5.herokuapp.com/graphql'
 });
 
 const authLink = setContext((_, { headers }) => {
