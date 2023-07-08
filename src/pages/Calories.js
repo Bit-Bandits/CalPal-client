@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'; // Imports React libraries as well as useEffect and useState
 import Auth from '../utils/auth';
 // import { format } from 'date-fns';
+import decode from 'jwt-decode';
 
 
 // import { SAVE_MEAL } from '../utils/mutations';
@@ -13,15 +14,16 @@ function Calories() {
     const [totalCalories, setTotalCalories] = useState(0); // new state variables for adding total calories
     // const [currentDate, setCurrentDate] = useState('');
 
-    //Gets username
-    // const getUsernameFromToken = () => {
-    //     const token = localStorage.getItem('id_token');
-    //     if (token) {
-    //       const decodedToken = jwt_decode(token);
-    //       return decodedToken.username;
-    //     }
-    //     return '';
-    //   };
+    //Gets username from JWT
+    const getUserIdFromToken = () => {
+        const token = localStorage.getItem('id_token');
+        if (token) {
+          const decodedToken = decode(token);
+          return decodedToken.data.username;
+        // console.log('decoded Token ID', decodedToken.data);
+        }
+        return '';
+      };
 
 
     // targets the value(food) in which the user is looking for
@@ -72,11 +74,11 @@ function Calories() {
 
     const handleSaveFood = (food) => {
 
-        //Trying to get username to save to database below
-        // const username = Auth.getUsername(); // Retrieve the username from AuthService
-        // console.log('username:', username);
+        //Gets userId from Token
+        const userId = getUserIdFromToken();
+        console.log(userId);
 
-        //
+
         const calories = food.food.nutrients.ENERC_KCAL * food.servings;
         setTotalCalories(totalCalories + calories);
         setSavedFoods([...savedFoods, { ...food, calories }]);
