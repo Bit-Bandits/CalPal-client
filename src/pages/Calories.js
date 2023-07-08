@@ -54,9 +54,14 @@ function Calories() {
         try {
             const response = await fetch(apiUrl)
             const data = await response.json()
-            // console.log('APICall:', data.hints);
+             if (data.hints && data.hints.length > 0) {
+                const firstHint = data.hints[0];
+                setFoodData([{ ...firstHint, servings: 1 }]);
+             } else {
+                setFoodData([]);
+             }
             // setFoodData(data.hints.map(item => ({ ...item, servings: 1 , unit: 'gram' })))
-            setFoodData(data.hints.map(item => ({ ...item, servings: 1 })))
+            // setFoodData(data.hints.map(item => ({ ...item, servings: 1 })))
         } catch (e) {
             console.log(e)
         }
@@ -89,7 +94,7 @@ function Calories() {
         const formattedDate = year * 10000 + month * 100 + day;
         console.log('date:', formattedDate);
 
-        const calories = food.food.nutrients.ENERC_KCAL * food.servings;
+        const calories = Math.round(food.food.nutrients.ENERC_KCAL * food.servings);
 
         const savedFood = {
             food: food.food.label,
@@ -118,9 +123,10 @@ function Calories() {
 
     // console.table(foodData.hints)
     const list = foodData.map((food, index) => {
-        const calories = (food.food.nutrients.ENERC_KCAL * food.servings).toFixed(2);
+        const calories = Math.round(food.food.nutrients.ENERC_KCAL * food.servings);
         return (
             <li className='calorie-item' key={food.food.foodId}>
+                <img src={food.food.image} alt={food.food.label} className='food-img'/> {/* New image elment */}
                 {food.food.label} | Calories: {calories}
 
                 {/* if logged in, show save button */}
@@ -155,7 +161,7 @@ function Calories() {
         return (
 
             <li key={index}>
-                {food.food.label} | Servings: {food.servings} | Calories: {food.calories}
+                {food.food.label} | Servings: {food.servings} | Calories: {Math.round(food.calories)}
                 <button onClick={() => handleDeleteFood(food)}>Delete</button>
             </li>
         )
