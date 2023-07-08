@@ -7,6 +7,7 @@ export const Login = (props) => {
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log(email);
+
         fetch('http://localhost:3001/graphql', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
