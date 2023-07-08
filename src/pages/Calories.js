@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'; // Imports React libraries as well as useEffect and useState
+import { useNavigate } from 'react-router-dom'
 import Auth from '../utils/auth';
 import decode from 'jwt-decode';
 import { useMutation } from '@apollo/client';
@@ -10,6 +11,8 @@ function Calories() {
     const [food, setFood] = useState('');
     const [totalCalories, setTotalCalories] = useState(0); // new state variables for adding total calories
     const [currentDate, setCurrentDate] = useState('');
+ 
+    const Navigate = useNavigate();
 
     const [saveMeal] = useMutation(SAVE_MEAL);
 
@@ -54,9 +57,14 @@ function Calories() {
         try {
             const response = await fetch(apiUrl)
             const data = await response.json()
-            // console.log('APICall:', data.hints);
+             if (data.hints && data.hints.length > 0) {
+                const firstHint = data.hints[0];
+                setFoodData([{ ...firstHint, servings: 1 }]);
+             } else {
+                setFoodData([]);
+             }
             // setFoodData(data.hints.map(item => ({ ...item, servings: 1 , unit: 'gram' })))
-            setFoodData(data.hints.map(item => ({ ...item, servings: 1 })))
+            // setFoodData(data.hints.map(item => ({ ...item, servings: 1 })))
         } catch (e) {
             console.log(e)
         }
@@ -89,7 +97,7 @@ function Calories() {
         const formattedDate = year * 10000 + month * 100 + day;
         console.log('date:', formattedDate);
 
-        const calories = food.food.nutrients.ENERC_KCAL * food.servings;
+        const calories = Math.round(food.food.nutrients.ENERC_KCAL * food.servings);
 
         const savedFood = {
             food: food.food.label,
@@ -123,13 +131,18 @@ function Calories() {
 
     }
 
+    const goToDashboard = () => {
+        Navigate('/dashboard');
+    }
+
       
 
     // console.table(foodData.hints)
     const list = foodData.map((food, index) => {
-        const calories = (food.food.nutrients.ENERC_KCAL * food.servings).toFixed(2);
+        const calories = Math.round(food.food.nutrients.ENERC_KCAL * food.servings);
         return (
             <li className='calorie-item' key={food.food.foodId}>
+                <img src={food.food.image} alt={food.food.label} className='food-img'/> {/* New image elment */}
                 {food.food.label} | Calories: {calories}
 
                 {/* if logged in, show save button */}
@@ -164,7 +177,7 @@ function Calories() {
         return (
 
             <li key={index}>
-                {food.food.label} | Servings: {food.servings} | Calories: {food.calories}
+                {food.food.label} | Servings: {food.servings} | Calories: {Math.round(food.calories)}
                 <button onClick={() => handleDeleteFood(food)}>Delete</button>
             </li>
         )
@@ -194,6 +207,7 @@ function Calories() {
                     {savedFoodList}
                     <p className="calorie-total">Total Calories: {totalCalories}</p>
                 </ul>
+                <button onClick={goToDashboard}>Go to Dashboard</button>
             </div>
         </div>
     )
