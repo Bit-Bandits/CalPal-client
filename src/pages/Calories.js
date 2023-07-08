@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'; // Imports React libraries as well as useEffect and useState
 import Auth from '../utils/auth';
-// import { format } from 'date-fns';
+import decode from 'jwt-decode';
 
 
 // import { SAVE_MEAL } from '../utils/mutations';
@@ -11,17 +11,18 @@ function Calories() {
     const [savedFoods, setSavedFoods] = useState([]); // new state variable for saved foods
     const [food, setFood] = useState('');
     const [totalCalories, setTotalCalories] = useState(0); // new state variables for adding total calories
-    // const [currentDate, setCurrentDate] = useState('');
+    const [currentDate, setCurrentDate] = useState('');
 
-    //Gets username
-    // const getUsernameFromToken = () => {
-    //     const token = localStorage.getItem('id_token');
-    //     if (token) {
-    //       const decodedToken = jwt_decode(token);
-    //       return decodedToken.username;
-    //     }
-    //     return '';
-    //   };
+    //Gets username from JWT
+    const getUsernameFromToken = () => {
+        const token = localStorage.getItem('id_token');
+        if (token) {
+          const decodedToken = decode(token);
+          return decodedToken.data.username;
+        // console.log('decoded Token ID', decodedToken.data);
+        }
+        return '';
+      };
 
 
     // targets the value(food) in which the user is looking for
@@ -42,14 +43,18 @@ function Calories() {
     useEffect(() => {
     }, [food]);
 
-
+    //Gets Date
+    useEffect(() => {
+        const formattedDate = new Date().toLocaleString();
+        setCurrentDate(formattedDate);
+      }, []);
 
     const fetchFoodData = async () => {
         const apiUrl = `https://api.edamam.com/api/food-database/v2/parser?ingr=${encodeURIComponent(food)}&app_id=314fbe88&app_key=25dfafdd8b307eb5f55d06bca92f4d08`
         try {
             const response = await fetch(apiUrl)
             const data = await response.json()
-            console.log('APICall:', data.hints);
+            // console.log('APICall:', data.hints);
             // setFoodData(data.hints.map(item => ({ ...item, servings: 1 , unit: 'gram' })))
             setFoodData(data.hints.map(item => ({ ...item, servings: 1 })))
         } catch (e) {
@@ -72,17 +77,35 @@ function Calories() {
 
     const handleSaveFood = (food) => {
 
-        //Trying to get username to save to database below
-        // const username = Auth.getUsername(); // Retrieve the username from AuthService
-        // console.log('username:', username);
+        //Gets userId from Token
+        const username = getUsernameFromToken();
+        console.log('username:', username);
 
-        //
+        //Converts date to "YYYYMMYY" string before saving to database
+        const currentDate = new Date();
+        const year = currentDate.getFullYear();
+        const month = currentDate.getMonth() + 1; // Months are zero-based, so we add 1
+        const day = currentDate.getDate();
+        const formattedDate = year * 10000 + month * 100 + day;
+        console.log('date:', formattedDate);
+
         const calories = food.food.nutrients.ENERC_KCAL * food.servings;
+
+        const savedFood = {
+            food: food.food.label,
+            calories,
+            servings: food.servings
+          };
+
+        console.log('food:', savedFood.food);
+        console.log('calories:', savedFood.calories);
+        console.log('servings:', savedFood.servings);
+
         setTotalCalories(totalCalories + calories);
         setSavedFoods([...savedFoods, { ...food, calories }]);
+        // console.log([...savedFoods, { ...food, calories }]);
 
-        //Saves username, food, calories, servings, and data to database
-
+        // Saves username, food, calories, servings, and data to database
         // try {
         //     const data = await saveMeal({
         //         variable: { username, food, calories, servings, date }
@@ -91,11 +114,6 @@ function Calories() {
 
     }
 
-    //Date
-    // useEffect(() => {
-    //     const formattedDate = format(new Date(), 'yyyyMMdd');
-    //     setCurrentDate(formattedDate);
-    //   }, []);
       
 
     // console.table(foodData.hints)
@@ -161,6 +179,7 @@ function Calories() {
             </div>
 
             <div className='saved-foods'>
+            <h2>Current Date: {currentDate}</h2>
                 <h3>Saved Foods</h3>
                 <ul>
                     {savedFoodList}
