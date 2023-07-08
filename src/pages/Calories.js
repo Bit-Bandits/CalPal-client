@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react'; // Imports React libraries as well as useEffect and useState
 import Auth from '../utils/auth';
 import decode from 'jwt-decode';
-
-
-// import { SAVE_MEAL } from '../utils/mutations';
-// import { useMutation } from '@apollo/client';
+import { useMutation } from '@apollo/client';
+import { SAVE_MEAL } from '../utils/mutations';
 
 function Calories() {
     const [foodData, setFoodData] = useState([]);
@@ -12,6 +10,8 @@ function Calories() {
     const [food, setFood] = useState('');
     const [totalCalories, setTotalCalories] = useState(0); // new state variables for adding total calories
     const [currentDate, setCurrentDate] = useState('');
+
+    const [saveMeal] = useMutation(SAVE_MEAL);
 
     //Gets username from JWT
     const getUsernameFromToken = () => {
@@ -75,7 +75,7 @@ function Calories() {
     //     setFoodData(foodData.map((item, i) => i === index ? { ...item, unit: value} : item))
     // }
 
-    const handleSaveFood = (food) => {
+    const handleSaveFood = async (food) => {
 
         //Gets userId from Token
         const username = getUsernameFromToken();
@@ -106,11 +106,20 @@ function Calories() {
         // console.log([...savedFoods, { ...food, calories }]);
 
         // Saves username, food, calories, servings, and data to database
-        // try {
-        //     const data = await saveMeal({
-        //         variable: { username, food, calories, servings, date }
-        //     })
-        // }
+        try {
+            const { data } = await saveMeal({
+              variables: {
+                username,
+                food: savedFood.food,
+                calories,
+                servings: savedFood.servings,
+                date: formattedDate,
+              },
+            });
+            console.log('Save meal response:', data);
+          } catch (error) {
+            console.error('Error saving meal:', error);
+          }
 
     }
 
