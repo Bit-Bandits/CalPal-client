@@ -14,11 +14,17 @@ import Dashboard from "./pages/Dashboard";
 import Calories from "./pages/Calories";
 import { Register } from "./Components/Signup";
 import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom'
+import Homepage from "./pages/Homepage";
 
+
+// const httpLink = createHttpLink({
+//   uri: 'https://cal-pal-server-273e253c14e5.herokuapp.com/graphql'
+// });
 
 const httpLink = createHttpLink({
-  uri: 'https://cal-pal-server-273e253c14e5.herokuapp.com/graphql'
+  uri: '/graphql'
 });
+
 
 const authLink = setContext((_, { headers }) => {
   // get the authentication token from local storage if it exists
@@ -40,16 +46,16 @@ const client = new ApolloClient({
 function App() {
   
   console.log(window.localStorage.getItem('id_token'))
-  useEffect(() => {
+  // useEffect(() => {
 
-    if (window.localStorage.getItem('id_token') === null ) {
-      window.localStorage.setItem('id_token', 'null')
-      window.location.pathname = '/login'
-    }
-    // if (window.location.pathname === '/') {
-    //   window.location.pathname = '/login'
-    // }
-  }, [])
+  //   if (window.localStorage.getItem('id_token') === null ) {
+  //     window.localStorage.setItem('id_token', 'null')
+  //     window.location.pathname = '/login'
+  //   }
+  //   // if (window.location.pathname === '/') {
+  //   //   window.location.pathname = '/login'
+  //   // }
+  // }, [])
   const toggleForm = () => {
     if (window.location.pathname === '/login') {
       window.location.pathname = '/register'
@@ -65,7 +71,8 @@ function App() {
           <Routes>
             <Route path='calories' element={<Calories />} />
             <Route path='login' element={<Login onFormSwitch={toggleForm} />} />
-            <Route path='/' element={<Dashboard />} />
+            <Route path='/' element={<Homepage />} />
+            <Route path='/dashboard' element={<Dashboard />} />
             <Route path='register' element={<Register onFormSwitch={toggleForm} />} />
 
 
