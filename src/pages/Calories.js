@@ -1,22 +1,42 @@
 import React, { useEffect, useState } from 'react'; // Imports React libraries as well as useEffect and useState
 import Auth from '../utils/auth';
+// import { format } from 'date-fns';
+
+
+// import { SAVE_MEAL } from '../utils/mutations';
+// import { useMutation } from '@apollo/client';
 
 function Calories() {
     const [foodData, setFoodData] = useState([]);
     const [savedFoods, setSavedFoods] = useState([]); // new state variable for saved foods
     const [food, setFood] = useState('');
     const [totalCalories, setTotalCalories] = useState(0); // new state variables for adding total calories
+    // const [currentDate, setCurrentDate] = useState('');
+
+    //Gets username
+    // const getUsernameFromToken = () => {
+    //     const token = localStorage.getItem('id_token');
+    //     if (token) {
+    //       const decodedToken = jwt_decode(token);
+    //       return decodedToken.username;
+    //     }
+    //     return '';
+    //   };
+
 
     // targets the value(food) in which the user is looking for
     const handleFoodChange = (event) => {
         setFood(event.target.value);
     };
 
+    // const [saveMeal, {error}] = useMutation(SAVE_MEAL);
+
     // handles the submit in our search to fetch data from api
     const handleFormSubmit = (event) => {
         event.preventDefault();
         setFoodData([]); // clear previous results
         fetchFoodData();
+
     };
 
     useEffect(() => {
@@ -51,10 +71,32 @@ function Calories() {
     // }
 
     const handleSaveFood = (food) => {
+
+        //Trying to get username to save to database below
+        // const username = Auth.getUsername(); // Retrieve the username from AuthService
+        // console.log('username:', username);
+
+        //
         const calories = food.food.nutrients.ENERC_KCAL * food.servings;
         setTotalCalories(totalCalories + calories);
         setSavedFoods([...savedFoods, { ...food, calories }]);
+
+        //Saves username, food, calories, servings, and data to database
+
+        // try {
+        //     const data = await saveMeal({
+        //         variable: { username, food, calories, servings, date }
+        //     })
+        // }
+
     }
+
+    //Date
+    // useEffect(() => {
+    //     const formattedDate = format(new Date(), 'yyyyMMdd');
+    //     setCurrentDate(formattedDate);
+    //   }, []);
+      
 
     // console.table(foodData.hints)
     const list = foodData.map((food, index) => {
@@ -93,6 +135,7 @@ function Calories() {
 
     const savedFoodList = savedFoods.map((food, index) => {
         return (
+
             <li key={index}>
                 {food.food.label} | Servings: {food.servings} | Calories: {food.calories}
                 <button onClick={() => handleDeleteFood(food)}>Delete</button>

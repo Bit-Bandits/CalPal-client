@@ -4,9 +4,18 @@ import decode from 'jwt-decode';
 // create a new class to instantiate for a user
 class AuthService {
   // get user data
-  getProfile() {
+  getUser() {
     return decode(this.getToken());
   }
+
+  // Trying to decode the JWT to get the username
+  
+  // getUsername() {
+  //   const token = this.getToken();
+  //   const decodedToken = decode(token);
+  //   return decodedToken.username;
+  // }
+  
 
   // check if user's logged in
   loggedIn() {
@@ -30,11 +39,6 @@ class AuthService {
   }
 
   getToken() {
-    return localStorage.getItem('id_token');
-  }
-
-
-  getToken() {
     // Retrieves the user token from localStorage
     return localStorage.getItem('id_token');
   }
@@ -51,6 +55,8 @@ class AuthService {
     // this will reload the page and reset the state of the application
     window.location.assign('/');
   }
+
+
 }
 
 export default new AuthService();

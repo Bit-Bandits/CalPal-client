@@ -19,6 +19,17 @@ mutation addUser($username: String!, $email: String!, $password: String!) {
   }
   `
 
+  export const GET_USER = gql`
+  query Query($getUserId: ID!) {
+    getUser(id: $getUserId) {
+      _id
+      email
+      password
+      username
+    }
+  }
+  `
+
  export const REMOVE_FOOD = gql`
     mutation removeFood($foodId: String!) {
         removeFood(foodId: $foodId) {
@@ -27,16 +38,15 @@ mutation addUser($username: String!, $email: String!, $password: String!) {
     }`
 
 
-export const SAVE_FOOD = gql`
-    mutation saveFood($input: foodInput!) {
-        saveFood(input: $input) {
-            _id
-            username
-            email
-            foodCount
-            savedFood {
-                foodId
-
-            }
-        }
-    }`
+export const SAVE_MEAL = gql`
+mutation Mutation($username: String!, $food: String!, $calories: Int!, $servings: Int!, $date: Int!) {
+    saveMeal(username: $username, food: $food, calories: $calories, servings: $servings, date: $date) {
+      _id
+      username
+      food
+      calories
+      servings
+      date
+    }
+  }
+  `
