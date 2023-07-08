@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'; // Imports React libraries as well as useEffect and useState
+import { useNavigate } from 'react-router-dom'
 import Auth from '../utils/auth';
 import decode from 'jwt-decode';
 
@@ -12,6 +13,8 @@ function Calories() {
     const [food, setFood] = useState('');
     const [totalCalories, setTotalCalories] = useState(0); // new state variables for adding total calories
     const [currentDate, setCurrentDate] = useState('');
+ 
+    const Navigate = useNavigate();
 
     //Gets username from JWT
     const getUsernameFromToken = () => {
@@ -119,6 +122,10 @@ function Calories() {
 
     }
 
+    const goToDashboard = () => {
+        Navigate('/dashboard');
+    }
+
       
 
     // console.table(foodData.hints)
@@ -191,6 +198,7 @@ function Calories() {
                     {savedFoodList}
                     <p className="calorie-total">Total Calories: {totalCalories}</p>
                 </ul>
+                <button onClick={goToDashboard}>Go to Dashboard</button>
             </div>
         </div>
     )
