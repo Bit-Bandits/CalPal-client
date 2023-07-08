@@ -18,11 +18,9 @@ export const Register = (props) => {
 
         const response = await addUser({
             variables: {
-                "user": {
-                    "username": name,
-                    "email": email,
-                    "password": pass
-                }
+                "username": name,
+                "email": email,
+                "password": pass
             }
         });
 
