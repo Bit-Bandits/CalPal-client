@@ -15,6 +15,7 @@ import Calories from "./pages/Calories";
 import { Register } from "./Components/Signup";
 import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom'
 import Homepage from "./pages/Homepage";
+import AboutUs from "./pages/AboutUs";
 
 
 const httpLink = createHttpLink({
@@ -74,6 +75,7 @@ function App() {
             <Route path='/' element={<Homepage />} />
             <Route path='/dashboard' element={<Dashboard />} />
             <Route path='register' element={<Register onFormSwitch={toggleForm} />} />
+            <Route path='/about-us' element={<AboutUs />} />
 
 
           </Routes>
