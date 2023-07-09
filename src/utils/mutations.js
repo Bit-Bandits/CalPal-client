@@ -19,16 +19,6 @@ mutation addUser($username: String!, $email: String!, $password: String!) {
   }
   `
 
-  export const GET_USER = gql`
-  query Query($getUserId: ID!) {
-    getUser(id: $getUserId) {
-      _id
-      email
-      password
-      username
-    }
-  }
-  `
 
  export const REMOVE_FOOD = gql`
     mutation removeFood($foodId: String!) {
