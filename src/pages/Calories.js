@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'; // Imports React libraries as well as useEffect and useState
 import { useNavigate } from 'react-router-dom'
 import Auth from '../utils/auth';
+import SavedMeals from './SavedMeals.';
 import decode from 'jwt-decode';
 import { useMutation } from '@apollo/client';
 import { SAVE_MEAL } from '../utils/mutations';
@@ -209,6 +210,7 @@ function Calories() {
                 </ul>
                 <button onClick={goToDashboard}>Go to Dashboard</button>
             </div>
+            <SavedMeals username={getUsernameFromToken} date={currentDate} />
         </div>
     )
 
