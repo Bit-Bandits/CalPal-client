@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Layout, Menu, Button } from 'antd';
 import { Nav } from 'react-bootstrap';
 
+
 import Auth from '../utils/auth'; // Import the Auth variable
 import { Link } from 'react-router-dom';
 const { Header } = Layout;
@@ -21,6 +22,9 @@ const NavBar = () => {
           </Menu.Item>
           <Menu.Item key="3">
             <Link to="/calories">Count my Calories</Link>
+          </Menu.Item>
+          <Menu.Item key="4">
+          <Link to="/about-us">About Us</Link>
           </Menu.Item>
         </Menu>
         <div>
