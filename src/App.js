@@ -16,14 +16,14 @@ import { Register } from "./Components/Signup";
 import { BrowserRouter, Routes, Route, NavLink } from 'react-router-dom'
 import Homepage from "./pages/Homepage";
 
-//Connects to server
-const httpLink = createHttpLink({
-  uri: 'https://cal-pal-server-273e253c14e5.herokuapp.com/graphql'
-});
 
 // const httpLink = createHttpLink({
-//   uri: '/graphql'
+//   uri: 'https://cal-pal-server-273e253c14e5.herokuapp.com/graphql'
 // });
+
+const httpLink = createHttpLink({
+  uri: '/graphql'
+});
 
 
 const authLink = setContext((_, { headers }) => {
