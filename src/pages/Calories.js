@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react"; // Imports React libraries as well as useEffect and useState
 import { useNavigate } from "react-router-dom";
 import Auth from "../utils/auth";
-import decode from "jwt-decode";
 import { useMutation, useQuery } from "@apollo/client";
 import { SAVE_MEAL } from "../utils/mutations";
 import { GET_MEAL_BY_USERNAME_AND_DATE } from "../utils/queries";
 import { REMOVE_FOOD } from "../utils/mutations";
+
+import {getUsernameFromToken, getFormattedDate} from '../utils/helpers';
 // import SavedMeals from '../Components/SavedMeals';
 // import SavedMealsTEST from '../Components/SavedMealsTEST';
 
@@ -17,26 +18,6 @@ function Calories() {
   const [currentDate, setCurrentDate] = useState("");
 
   const Navigate = useNavigate();
-
-  //Gets username from JWT
-  const getUsernameFromToken = () => {
-    const token = localStorage.getItem("id_token");
-    if (token) {
-      const decodedToken = decode(token);
-      return decodedToken.data.username;
-      // console.log('decoded Token ID', decodedToken.data);
-    }
-    return "";
-  };
-
-  const getFormattedDate = () => {
-    const currentDate = new Date();
-    const year = String(currentDate.getFullYear());
-    const month = String(currentDate.getMonth() + 1).padStart(2, "0"); // Zero-pad the month
-    const day = String(currentDate.getDate()).padStart(2, "0"); // Zero-pad the day
-    const formattedDate = year + month + day;
-    return formattedDate;
-  };
 
   const [saveMeal] = useMutation(SAVE_MEAL, {
     refetchQueries: [
@@ -179,7 +160,7 @@ function Calories() {
     const savedFood = {
       food: food.food.label,
       calories,
-      servings: food.servings,
+      servings: parseInt(food.servings),
     };
 
     console.log("food:", savedFood.food);
@@ -294,3 +275,4 @@ function Calories() {
 }
 
 export default Calories;
+    
