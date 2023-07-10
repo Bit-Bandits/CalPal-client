@@ -12,7 +12,7 @@ const NavBar = () => {
 
   return (
     <Layout className="layout">
-      <Header style={{ display: 'flex', justifyContent: 'space-evenly' }}>
+      <Header style={{ display: 'flex', justifyContent: 'center', }}>
         <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['1']}>
           <Menu.Item key="1">
           <Link to="/">Home</Link>
