@@ -5,6 +5,7 @@ import decode from 'jwt-decode';
 import { useMutation, useQuery } from '@apollo/client';
 import { SAVE_MEAL } from '../utils/mutations';
 import { GET_MEAL_BY_USERNAME_AND_DATE } from "../utils/queries";
+import { REMOVE_FOOD } from '../utils/mutations';
 // import SavedMeals from '../Components/SavedMeals';
 // import SavedMealsTEST from '../Components/SavedMealsTEST';
 
@@ -18,6 +19,8 @@ function Calories() {
     const Navigate = useNavigate();
 
     const [saveMeal] = useMutation(SAVE_MEAL);
+    const [removeFood] = useMutation(REMOVE_FOOD);
+
 
     
 
@@ -82,10 +85,20 @@ function Calories() {
         }
     }
 
-    const handleDeleteFood = (foodToDelete) => {
-        setSavedFoods(savedFoods.filter(food => food !== foodToDelete));
-        setTotalCalories(totalCalories - foodToDelete.calories);
-    }
+    const handleDeleteFood = async (foodToDelete) => {
+        try {
+          await removeFood({
+            variables: {
+              foodId: foodToDelete._id,
+            },
+          });
+          setSavedFoods(savedFoods.filter(meals => meals._id !== foodToDelete._id));
+          setTotalCalories(totalCalories - foodToDelete.calories);
+        } catch (error) {
+            console.error('Error deleting food:', error);
+            console.log('food to delete:', foodToDelete)
+        }
+      };
 
     const handleServingsChange = (index, value) => {
         setFoodData(foodData.map((item, i) => i === index ? { ...item, servings: value } : item))
@@ -212,7 +225,7 @@ function Calories() {
 
             <li key={meals._id}>
                 {meals.food} | Servings: {meals.servings} | Calories: {Math.round(meals.calories)}
-                <button onClick={() => handleDeleteFood(food)}>Delete</button>
+                <button onClick={() => handleDeleteFood(meals)}>Delete</button>
             </li>
         )
     })
