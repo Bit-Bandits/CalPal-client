@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from "react";
 import dayjs from "dayjs";
 import { useQuery } from "@apollo/client";
@@ -85,6 +86,8 @@ const DemoColumn = () => {
     seriesField: "",
     color: ({ type }) => {
       if (type === "10-30分" || type === "30+分") {
+
+
         return paletteSemanticRed;
       }
 
@@ -95,7 +98,9 @@ const DemoColumn = () => {
         const val = parseFloat(originData.value);
 
         if (val < 0.05) {
+
           return (val * 100).toFixed(1) + "%";
+
         }
       },
       offset: 10,
