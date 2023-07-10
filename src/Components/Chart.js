@@ -18,6 +18,11 @@ const DemoColumn = () => {
   const mondayDate = dayjs().startOf("week").add(1, "day");
   const tuesdayDate = mondayDate.add("1", "day");
   const wednesdayDate = mondayDate.add("2", "day");
+  const thursdayDate = mondayDate.add("3", "day");
+  const fridayDate = mondayDate.add("4", "day");
+  const saturdayDate = mondayDate.add("5", "day");
+  const sundayDate = mondayDate.add("6", "day");
+  
 
   //////////////////
 
@@ -34,16 +39,57 @@ const DemoColumn = () => {
       date: tuesdayDate.format("YYYYMMDD")
     },
   });
+  const { data: wednesdayData } = useQuery(GET_MEAL_BY_USERNAME_AND_DATE, {
+    variables: {
+      username: getUsernameFromToken(),
+      date: wednesdayDate.format("YYYYMMDD")
+    },
+  });
+  const { data: thursdayData } = useQuery(GET_MEAL_BY_USERNAME_AND_DATE, {
+    variables: {
+      username: getUsernameFromToken(),
+      date: thursdayDate.format("YYYYMMDD")
+    },
+  });
+  const { data: fridayData } = useQuery(GET_MEAL_BY_USERNAME_AND_DATE, {
+    variables: {
+      username: getUsernameFromToken(),
+      date: fridayDate.format("YYYYMMDD")
+    },
+  });
+  const { data: saturdayData } = useQuery(GET_MEAL_BY_USERNAME_AND_DATE, {
+    variables: {
+      username: getUsernameFromToken(),
+      date: saturdayDate.format("YYYYMMDD")
+    },
+  });
+  const { data: sundayData } = useQuery(GET_MEAL_BY_USERNAME_AND_DATE, {
+    variables: {
+      username: getUsernameFromToken(),
+      date: sundayDate.format("YYYYMMDD")
+    },
+  });
+
 
   /////////////////
 
   const mondayCalories = getTotalCalories(mondayData);
   const tuesdayCalories = getTotalCalories(tuesdayData);
+  const wednesdayCalories = getTotalCalories(wednesdayData);
+  const thursdayCalories = getTotalCalories(thursdayData);
+  const fridayCalories = getTotalCalories(fridayData);
+  const saturdayCalories = getTotalCalories(saturdayData);
+  const sundayCalories = getTotalCalories(sundayData);
 
   /////////////
 
   console.log(mondayCalories)
   console.log(tuesdayCalories)
+  console.log(wednesdayCalories)
+  console.log(thursdayCalories)
+  console.log(fridayCalories)
+  console.log(saturdayCalories)
+  console.log(sundayCalories)
 
   const dummyData = [
     {
@@ -56,23 +102,23 @@ const DemoColumn = () => {
     },
     {
       type: "Wednesday",
-      value: 0.19,
+      value: wednesdayCalories,
     },
     {
       type: "Thursday",
-      value: 0.22,
+      value: thursdayCalories,
     },
     {
       type: "Friday",
-      value: 0.05,
+      value: fridayCalories,
     },
     {
       type: "Saturday",
-      value: 0.01,
+      value: saturdayCalories,
     },
     {
       type: "Sunday",
-      value: 0.015,
+      value: sundayCalories,
     },
   ];
 
