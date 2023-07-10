@@ -21,11 +21,10 @@ mutation addUser($username: String!, $email: String!, $password: String!) {
 
 
  export const REMOVE_FOOD = gql`
-    mutation removeFood($foodId: String!) {
-        removeFood(foodId: $foodId) {
-         _id 
-         }
-    }`
+ mutation removeMeal($id: ID!) {
+  removeMeal(_id: $id)
+}
+`
 
 
 export const SAVE_MEAL = gql`
