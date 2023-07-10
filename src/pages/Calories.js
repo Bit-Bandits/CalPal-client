@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'; // Imports React libraries as well as useEffect and useState
 import { useNavigate } from 'react-router-dom'
 import Auth from '../utils/auth';
-import SavedMeals from './SavedMeals.';
 import decode from 'jwt-decode';
-import { useMutation } from '@apollo/client';
+import { useMutation, useQuery } from '@apollo/client';
 import { SAVE_MEAL } from '../utils/mutations';
+import { GET_MEAL_BY_USERNAME_AND_DATE } from "../utils/queries";
+// import SavedMeals from '../Components/SavedMeals';
+// import SavedMealsTEST from '../Components/SavedMealsTEST';
 
 function Calories() {
     const [foodData, setFoodData] = useState([]);
@@ -16,6 +18,8 @@ function Calories() {
     const Navigate = useNavigate();
 
     const [saveMeal] = useMutation(SAVE_MEAL);
+
+    
 
     //Gets username from JWT
     const getUsernameFromToken = () => {
@@ -34,8 +38,6 @@ function Calories() {
         setFood(event.target.value);
     };
 
-    // const [saveMeal, {error}] = useMutation(SAVE_MEAL);
-
     // handles the submit in our search to fetch data from api
     const handleFormSubmit = (event) => {
         event.preventDefault();
@@ -53,6 +55,15 @@ function Calories() {
         setCurrentDate(formattedDate);
       }, []);
 
+      const getFormattedDate = () => {
+        const currentDate = new Date();
+        const year = String(currentDate.getFullYear());
+        const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // Zero-pad the month
+        const day = String(currentDate.getDate()).padStart(2, '0'); // Zero-pad the day
+        const formattedDate = year + month + day;
+        return formattedDate;
+      };
+      
     const fetchFoodData = async () => {
         const apiUrl = `https://api.edamam.com/api/food-database/v2/parser?ingr=${encodeURIComponent(food)}&app_id=314fbe88&app_key=25dfafdd8b307eb5f55d06bca92f4d08`
         try {
@@ -80,9 +91,23 @@ function Calories() {
         setFoodData(foodData.map((item, i) => i === index ? { ...item, servings: value } : item))
     }
 
-    // const handleUnitChange = (index, value) => {
-    //     setFoodData(foodData.map((item, i) => i === index ? { ...item, unit: value} : item))
-    // }
+    const { loading, error, data } = useQuery(GET_MEAL_BY_USERNAME_AND_DATE, {
+        variables: {
+          username: getUsernameFromToken(),
+          date: getFormattedDate(),
+        },
+      });
+    
+      if (loading) {
+        return <p>Loading...</p>;
+      }
+    
+      if (error) {
+        return <p>Error: {error.message}</p>;
+      }
+    
+      const mealsFromDatabase = data.getMealsByUsernameAndDate;
+      console.log('meals from database:', mealsFromDatabase);
 
     const handleSaveFood = async (food) => {
 
@@ -90,12 +115,7 @@ function Calories() {
         const username = getUsernameFromToken();
         console.log('username:', username);
 
-        //Converts date to "YYYYMMYY" string before saving to database
-        const currentDate = new Date();
-        const year = currentDate.getFullYear();
-        const month = currentDate.getMonth() + 1; // Months are zero-based, so we add 1
-        const day = currentDate.getDate();
-        const formattedDate = year * 10000 + month * 100 + day;
+        const formattedDate = getFormattedDate();
         console.log('date:', formattedDate);
 
         const calories = Math.round(food.food.nutrients.ENERC_KCAL * food.servings);
@@ -111,8 +131,9 @@ function Calories() {
         console.log('servings:', savedFood.servings);
 
         setTotalCalories(totalCalories + calories);
-        setSavedFoods([...savedFoods, { ...food, calories }]);
-        // console.log([...savedFoods, { ...food, calories }]);
+        setSavedFoods([...savedFoods, mealsFromDatabase]);
+        // console.log('saved foods:', [...savedFoods, { ...meals }]);
+        console.log('saved foods:', savedFoods);
 
         // Saves username, food, calories, servings, and data to database
         try {
@@ -122,7 +143,7 @@ function Calories() {
                 food: savedFood.food,
                 calories,
                 servings: savedFood.servings,
-                date: formattedDate,
+                date: parseInt(formattedDate),
               },
             });
             console.log('Save meal response:', data);
@@ -130,13 +151,14 @@ function Calories() {
             console.error('Error saving meal:', error);
           }
 
-    }
+        }
+
 
     const goToDashboard = () => {
         Navigate('/dashboard');
     }
 
-      
+    
 
     // console.table(foodData.hints)
     const list = foodData.map((food, index) => {
@@ -169,20 +191,32 @@ function Calories() {
                     <option value="oz">Ounce</option>
                     <option value="fl oz">Fl Oz</option>
                 </select> */}
+
             </li>
 
         )
     })
 
-    const savedFoodList = savedFoods.map((food, index) => {
+    // const savedFoodList = savedFoods.map((food, index) => {
+    //     return (
+
+    //         <li key={index}>
+    //             {food.food.label} | Servings: {food.servings} | Calories: {Math.round(food.calories)}
+    //             <button onClick={() => handleDeleteFood(food)}>Delete</button>
+    //         </li>
+    //     )
+    // })
+
+    const savedFoodList = mealsFromDatabase.map((meals) => {
         return (
 
-            <li key={index}>
-                {food.food.label} | Servings: {food.servings} | Calories: {Math.round(food.calories)}
+            <li key={meals._id}>
+                {meals.food} | Servings: {meals.servings} | Calories: {Math.round(meals.calories)}
                 <button onClick={() => handleDeleteFood(food)}>Delete</button>
             </li>
         )
     })
+
     return (
         <div className='foods-container'>
             <div className='search-results'>
@@ -200,17 +234,18 @@ function Calories() {
                     {list}
                 </ul>
             </div>
+        
 
             <div className='saved-foods'>
             <h2>Current Date: {currentDate}</h2>
                 <h3>Saved Foods</h3>
                 <ul>
+                    {/* <SavedMealsTEST username={getUsernameFromToken()} date={getFormattedDate()}/> */}
                     {savedFoodList}
-                    <p className="calorie-total">Total Calories: {totalCalories}</p>
                 </ul>
                 <button onClick={goToDashboard}>Go to Dashboard</button>
             </div>
-            <SavedMeals username={getUsernameFromToken} date={currentDate} />
+            {/* <SavedMeals username={getUsernameFromToken()} date={getFormattedDate()}/> */}
         </div>
     )
 
