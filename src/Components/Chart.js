@@ -1,11 +1,11 @@
-
-import React, { useState, useEffect } from "react";
-import dayjs from "dayjs";
+import React from "react";
 import { useQuery } from "@apollo/client";
 import { Column } from "@ant-design/plots";
+import dayjs from 'dayjs';
+
 
 import { GET_MEAL_BY_USERNAME_AND_DATE } from "../utils/queries";
-import { getUsernameFromToken, getFormattedDate } from "../utils/helpers";
+import { getUsernameFromToken } from "../utils/helpers";
 
 const getTotalCalories = (data) => {
   let total = 0;
@@ -24,9 +24,6 @@ const DemoColumn = () => {
   const saturdayDate = mondayDate.add("5", "day");
   const sundayDate = mondayDate.add("6", "day");
   
-
-  //////////////////
-
   const { data: mondayData } = useQuery(GET_MEAL_BY_USERNAME_AND_DATE, {
     variables: {
       username: getUsernameFromToken(),
@@ -71,9 +68,6 @@ const DemoColumn = () => {
     },
   });
 
-
-  /////////////////
-
   const mondayCalories = getTotalCalories(mondayData);
   const tuesdayCalories = getTotalCalories(tuesdayData);
   const wednesdayCalories = getTotalCalories(wednesdayData);
@@ -81,16 +75,6 @@ const DemoColumn = () => {
   const fridayCalories = getTotalCalories(fridayData);
   const saturdayCalories = getTotalCalories(saturdayData);
   const sundayCalories = getTotalCalories(sundayData);
-
-  /////////////
-
-  console.log(mondayCalories)
-  console.log(tuesdayCalories)
-  console.log(wednesdayCalories)
-  console.log(thursdayCalories)
-  console.log(fridayCalories)
-  console.log(saturdayCalories)
-  console.log(sundayCalories)
 
   const dummyData = [
     {
@@ -132,21 +116,15 @@ const DemoColumn = () => {
     seriesField: "",
     color: ({ type }) => {
       if (type === "10-30分" || type === "30+分") {
-
-
         return paletteSemanticRed;
       }
-
       return brandColor;
     },
     label: {
       content: (originData) => {
         const val = parseFloat(originData.value);
-
         if (val < 0.05) {
-
           return (val * 100).toFixed(1) + "%";
-
         }
       },
       offset: 10,
@@ -159,6 +137,7 @@ const DemoColumn = () => {
       },
     },
   };
+
   return <Column {...config} />;
 };
 
