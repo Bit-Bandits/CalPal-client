@@ -133,7 +133,7 @@ function Calories() {
     console.log(total);
 
     setTotalCalories(total)
-  }, [data]);
+  }, [mealsFromDatabase]);
 
   if (loading) {
     return <p>Loading...</p>;

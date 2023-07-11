@@ -10,6 +10,7 @@
     "@ant-design/icons": "^5.1.4",
     "@ant-design/plots": "^1.2.5",
     "@apollo/client": "^3.7.16",
+    "@babel/plugin-proposal-private-property-in-object": "^v7.21.11",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/user-event": "^13.5.0",
     "@types/react": "^18.2.14",
