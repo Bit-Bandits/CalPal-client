@@ -6,7 +6,7 @@ import Auth from '../utils/auth';
 import { Link } from 'react-router-dom';
 const { Header } = Layout;
 
-const NavBar = () => {
+const Navbar = () => {
   const handleLogoutClick = () => {
     Auth.logout();
   };
@@ -45,4 +45,4 @@ const NavBar = () => {
   );
 };
 
-export default NavBar;
+export default Navbar;
