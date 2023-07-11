@@ -1,5 +1,4 @@
 import { useState } from "react";
-
 const slideStyles = {
   width: "190%",
   height: "210%",
@@ -8,8 +7,6 @@ const slideStyles = {
   backgroundSize: "cover",
   backgroundPosition: "center",
 };
-
-
 const rightArrowStyles = {
   position: "absolute",
   top: "130%",
@@ -20,7 +17,6 @@ const rightArrowStyles = {
   zIndex: 1,
   cursor: "pointer",
 };
-
 const leftArrowStyles = {
   position: "absolute",
   top: "130%",
@@ -31,23 +27,19 @@ const leftArrowStyles = {
   zIndex: 1,
   cursor: "pointer",
 };
-
 const sliderStyles = {
   position: "relative",
   height: "110%",
 };
-
 const dotsContainerStyles = {
   display: "flex",
   justifyContent: "center",
 };
-
 const dotStyle = {
   margin: "0 3px",
   cursor: "pointer",
   fontSize: "20px",
 };
-
 const ImageSlider = ({ slides }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const goToPrevious = () => {
@@ -63,11 +55,11 @@ const ImageSlider = ({ slides }) => {
   const goToSlide = (slideIndex) => {
     setCurrentIndex(slideIndex);
   };
+  console.log(slides[0]);
   const slideStylesWidthBackground = {
     ...slideStyles,
-    backgroundImage: `url(${slides[currentIndex].url})`,
+    backgroundImage: `url(${slides[currentIndex].src})`,
   };
-
   return (
     <div style={sliderStyles}>
       <div>
@@ -93,5 +85,4 @@ const ImageSlider = ({ slides }) => {
     </div>
   );
 };
-
 export default ImageSlider;
