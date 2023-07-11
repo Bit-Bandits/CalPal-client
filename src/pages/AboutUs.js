@@ -29,21 +29,14 @@ function AboutUs() {
 
   <ul class="team-icon">
 
-    <li><a href="#" class="twitter">
+    <li><a href="https://www.twitter.com" class="twitter">
       <i class="fa fa-twitter"></i>
     </a></li>
 
-    <li><a href="#" class="pinterest">
+    <li><a href="https://www.pinterest.com" class="pinterest">
       <i class="fa fa-pinterest"></i>
     </a></li>
 
-    <li><a href="#" class="facebook">
-      <i class="fa fa-facebook"></i>
-    </a></li>
-
-    <li><a href="#" class="dribble">
-      <i class="fa fa-dribbble"></i>
-    </a></li>
 
   </ul>
 
