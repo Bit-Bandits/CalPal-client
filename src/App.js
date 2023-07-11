@@ -3,7 +3,7 @@ import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from '@ap
 import { setContext } from '@apollo/client/link/context';
 import './App.css';
 import Login from './Components/Login';
-import Navbar from './Components/Navbar';
+// import Navbar from './Components/Navbar';
 import Dashboard from "./pages/Dashboard";
 import Calories from "./pages/Calories";
 import { Register } from "./Components/Signup";
@@ -44,7 +44,7 @@ function App() {
       <BrowserRouter>
         <div>
           <nav>
-            <Navbar />
+            {/* <Navbar /> */}
           </nav>
           <Routes>
             <Route path='calories' element={<Calories />} />
