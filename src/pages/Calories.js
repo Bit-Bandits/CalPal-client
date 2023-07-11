@@ -7,8 +7,6 @@ import { GET_MEAL_BY_USERNAME_AND_DATE } from "../utils/queries";
 import { REMOVE_FOOD } from "../utils/mutations";
 
 import {getUsernameFromToken, getFormattedDate} from '../utils/helpers';
-// import SavedMeals from '../Components/SavedMeals';
-// import SavedMealsTEST from '../Components/SavedMealsTEST';
 
 function Calories() {
   const [foodData, setFoodData] = useState([]);
