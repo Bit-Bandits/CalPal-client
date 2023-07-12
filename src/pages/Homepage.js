@@ -8,22 +8,23 @@ import Image2 from '../assets/2.jpg';
 
 const Homepage = () => {
   const slides = [
-    { src: Image1, title: "" },
-    { src: Image2, title: "" },
-    { src: Image3, title: "" }
+    { src: Image1, title: "CalPal, your ultimate companion in the journey towards a healthier lifestyle! Are you tired of tedious manual tracking and complex calorie calculations? " },
+    { src: Image2, title: "CalPal is the innovative application that will revolutionize the way you manage your daily caloric intake" },
+    { src: Image3, title: "are you ready to embark on a transformative journey towards a fitter, happier lifestyle? "}
   
   ];
 
   const containerStyles = {
-    width: "500px",
+    // width: "500px",
+    width: "100%",
     height: "279px",
-    margin: "0 auto",
+    // margin: "0 auto",
   };
 
   return (
     <div>
       <h1 id="home">Welcome to Calpal</h1>
-      <div style={containerStyles}>
+      <div id="test" style={containerStyles}>
         <ImageSlider slides={slides} />
       </div>
     </div>
