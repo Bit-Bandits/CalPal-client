@@ -8,14 +8,7 @@ class AuthService {
     return decode(this.getToken());
   }
 
-  // Trying to decode the JWT to get the username
-  
-  // getUsername() {
-  //   const token = this.getToken();
-  //   const decodedToken = decode(token);
-  //   return decodedToken.username;
-  // }
-  
+
 
   // check if user's logged in
   loggedIn() {
