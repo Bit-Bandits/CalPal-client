@@ -86,7 +86,7 @@ function AboutUs() {
 
     <li><a href="https://github.com/orgs/Bit-Bandits/people/mattwagner28" class="Github"><i class="fa fa-Github"></i></a></li>
 
-    <li><a href="" class="LinkedIn"><i class="fa fa-LinkedIn"></i></a></li>
+    <li><a href="www.example.com" class="LinkedIn"><i class="fa fa-LinkedIn"></i></a></li>
 
 
 
@@ -140,7 +140,7 @@ function AboutUs() {
 
   <li><a href="https://github.com/AnthGrow" class="GitHub"><i class="fa fa-Github"></i></a></li>
 
-  <li><a href="" class="LinkedIn"><i class="fa fa-LinkedIn"></i></a></li>
+  <li><a href="www.example.com" class="LinkedIn"><i class="fa fa-LinkedIn"></i></a></li>
 
  
 
