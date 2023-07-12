@@ -93,7 +93,7 @@ body {
     border-radius: 5px;
   }
 
-  .calorie-item button {
+.calorie-item button {
 	padding: 0.5rem 1rem;
 	border: none;
 	border-radius: 5px;
@@ -102,13 +102,15 @@ body {
 	transition: all 0.3s ease;
   }
 
-  .calorie-item button:hover {
+.calorie-item button:hover {
 	background-color: #057b17;
   }
 
 .calorie-total {
   margin-top: 1rem;
   font-weight: bold;
+  color: #10a3dd;
+  text-align: center; 
 }
 
 /* Here is styling for search bar*/
@@ -174,7 +176,21 @@ body {
   .saved-foods {
 	background-color: #f0f0f0;
 	border-radius: 10px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 1rem;
 }
+
+.saved-foods button {
+	padding: 0.5rem 1rem;
+	border: none;
+	border-radius: 5px;
+	background-color: #10a3dd;
+	color: #fff;
+	transition: all 0.3s ease;
+	margin-top: 1rem; /* Add margin-top */
+  }
 
 /* Buttons in the search results and saved foods sections */
 
@@ -202,21 +218,21 @@ body {
   }
 
 .food-img {
-    width: 50px;
-    height: 50px;
-    object-fit: cover;
-    border-radius: 50%;
-    margin-right: 1rem;
+	width: 80px; 
+	height: 80px; 
+	object-fit: cover;
+	border-radius: 50%;
+	margin-right: 1rem;
   }
 
   .meal-item {
-	display: flex;
-	align-items: center;
+	  display: flex;
+	  align-items: center;
 	  justify-content: space-between;
 	  padding: 10px;
 	  border: 1px solid #ccc;
 	  border-radius: 5px;
-	 margin-bottom: 10px;
+	  margin-bottom: 10px;
 	  transition: background-color 0.3s, color 0.3s;
   }
 
@@ -224,6 +240,15 @@ body {
 	background: linear-gradient(to right, blue, white); 
 	  color: white; 
   }
+
+  .meal-item 
+  .saved-food-img {
+  width: 30px; /* Adjust the width as per your preference */
+  height: 30px; /* Adjust the height as per your preference */
+  object-fit: cover;
+  border-radius: 50%;
+  margin-right: 1rem;
+}
   
 
 /* delete button*/
@@ -231,6 +256,14 @@ body {
 	padding: 10px 20px;
 	margin-bottom: 10px; 
 	display: block;
+  }
+
+  h2 {
+	text-align: center;
+  }
+
+  button {
+	margin: 10px;  /* Adjust as needed */
   }
 
 .section-white {
