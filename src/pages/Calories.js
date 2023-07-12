@@ -72,6 +72,7 @@ function Calories() {
         const firstHint = data.hints[0];
         setFoodData([{ ...firstHint, servings: 1 }]);
       } else {
+        console.log('did not return data');
         setFoodData([]);
       }
       
@@ -115,7 +116,7 @@ function Calories() {
   });
 
   const mealsFromDatabase = data?.getMealsByUsernameAndDate;
-  console.log("meals from database:", mealsFromDatabase);
+  // console.log("meals from database:", mealsFromDatabase);
 
   
   useEffect(() => {

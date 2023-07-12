@@ -3,6 +3,7 @@ import React, { useState } from "react";
 export const Login = (props) => {
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
+    const [wrongInfo, setWrongInfo] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -14,9 +15,12 @@ export const Login = (props) => {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ query: `mutation { login(email: "${email}", password: "${pass}")  { token } }` })
         }).then(res => res.json()).then(data => {
-            console.log(data)
+            console.log(data.data.login)
+            if (data.data.login) {
             localStorage.setItem('id_token', data.data.login.token);
-            window.location.pathname='/dashboard'
+            window.location.pathname='/dashboard' 
+            } setWrongInfo("Incorrect Username or Password -- Try again!");
+
         }).catch(err => console.log(err))
     }
 
@@ -31,6 +35,7 @@ export const Login = (props) => {
                 <button type="submit">Log In</button>
             </form>
             <button className="link-btn" onClick={() => props.onFormSwitch()}>Don't have an account? Register here.</button>
+            <h3 style={{ color: 'red' }}>{wrongInfo}</h3>
         </div>
     )
 }
