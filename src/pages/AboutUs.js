@@ -74,7 +74,7 @@ function AboutUs() {
 
 <div class="team-item">
 
-  <img src="" class="team-img" alt="pic" />
+  <img src="https://www.linkpicture.com/q/IMG_9280_1.jpg" class="team-img" alt="pic" />
 
   <h3>Matt Wagner</h3>
 
@@ -86,7 +86,7 @@ function AboutUs() {
 
     <li><a href="https://github.com/orgs/Bit-Bandits/people/mattwagner28" class="Github"><i class="fa fa-Github"></i></a></li>
 
-    <li><a href="www.example.com" class="LinkedIn"><i class="fa fa-LinkedIn"></i></a></li>
+    <li><a href="https://www.linkedin.com/in/matthewtwagner" class="LinkedIn"><i class="fa fa-LinkedIn"></i></a></li>
 
 
 
