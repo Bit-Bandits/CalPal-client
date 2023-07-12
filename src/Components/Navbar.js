@@ -3,7 +3,7 @@ import React from 'react';
 // import { Nav } from 'react-bootstrap';
 
 import Auth from '../utils/auth';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 // const { Header } = Layout;
 
 const Navbar = () => {
