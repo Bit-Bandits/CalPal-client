@@ -24,17 +24,17 @@ function AboutUs() {
 
   <img src="https://www.linkpicture.com/q/345454302_249964134275081_1706394919925166623_n.jpeg" class="team-img" alt="pic" />
   <h3>Goldie Rizova</h3>
-  <div class="team-info"><p>Junior Engineer</p></div>
-  <p>I am a Junior Software Engineer currently in a bootcamp.</p>
+  <div class="team-info"><p>Software Engineer</p></div>
+  <p>I am a Software Engineer currently in a bootcamp.</p>
 
   <ul class="team-icon">
 
-    <li><a href="https://www.twitter.com" class="twitter">
-      <i class="fa fa-twitter"></i>
+    <li><a href="https://github.com/Goldie369" class="GitHub">
+      <i class="fa fa-Github"></i>
     </a></li>
 
-    <li><a href="https://www.pinterest.com" class="pinterest">
-      <i class="fa fa-pinterest"></i>
+    <li><a href="https://www.linkedin.com/in/zlatelina-rizova-6b7487266/" class="LinkedIn">
+      <i class="fa fa-LinkedIn"></i>
     </a></li>
 
 
@@ -47,19 +47,19 @@ function AboutUs() {
 
 <div class="team-item">
 
-  <img src="" class="team-img" alt="pic" />
+  <img src="https://www.linkpicture.com/q/me_3.jpg" class="team-img" alt="pic" />
   <h3>Mohamed Elhelw</h3>
-  <div class="team-info"><p>Junior Engineer</p></div>
-  <p>I am a Junior Software Engineer currently in a bootcamp.</p>
+  <div class="team-info"><p>Software Engineer</p></div>
+  <p>Full stack web developer.</p>
 
   <ul class="team-icon">
 
-    <li><a href="https://www.pinterest.com" class="twitter">
-      <i class="fa fa-twitter"></i>
+    <li><a href="https://github.com/melhelow" class="GitHub">
+      <i class="fa fa-Github"></i>
     </a></li>
 
-    <li><a href="https://www.pinterest.com" class="pinterest">
-      <i class="fa fa-pinterest"></i>
+    <li><a href="https://www.linkedin.com/in/mohamed-elhelw-76a888271/" class="LinkedIn">
+      <i class="fa fa-LinkedIn"></i>
     </a></li>
 
  
@@ -84,9 +84,9 @@ function AboutUs() {
 
   <ul class="team-icon">
 
-    <li><a href="https://www.pinterest.com" class="twitter"><i class="fa fa-twitter"></i></a></li>
+    <li><a href="https://github.com/orgs/Bit-Bandits/people/mattwagner28" class="Github"><i class="fa fa-Github"></i></a></li>
 
-    <li><a href="https://www.pinterest.com" class="pinterest"><i class="fa fa-pinterest"></i></a></li>
+    <li><a href="" class="LinkedIn"><i class="fa fa-LinkedIn"></i></a></li>
 
 
 
@@ -100,7 +100,7 @@ function AboutUs() {
 
 <div class="team-item">
 
-  <img src="" class="team-img" alt="pic" />
+  <img src="https://www.linkpicture.com/q/hey-me.jpg" class="team-img" alt="pic" />
 
   <h3>José Segura</h3>
 
@@ -110,9 +110,9 @@ function AboutUs() {
 
   <ul class="team-icon">
 
-    <li><a href="https://www.pinterest.com" class="twitter"><i class="fa fa-twitter"></i></a></li>
+    <li><a href="https://github.com/Jose-seg" class="GitHub"><i class="fa fa-GitHub"></i></a></li>
 
-    <li><a href="https://www.pinterest.com" class="pinterest"><i class="fa fa-pinterest"></i></a></li>
+    <li><a href="https://www.linkedin.com/in/jose-segura-7a998319a" class="LinkedIn"><i class="fa fa-LinkedIn"></i></a></li>
 
 
 
@@ -128,7 +128,7 @@ function AboutUs() {
 
 <div class="team-item">
 
-<img src="" class="team-img" alt="pic" />
+<img src="https://www.linkpicture.com/q/AntBioPic.jpeg" class="team-img" alt="pic" />
 
 <h3>Anthony Groce</h3>
 
@@ -138,9 +138,9 @@ function AboutUs() {
 
 <ul class="team-icon">
 
-  <li><a href="https://www.pinterest.com" class="twitter"><i class="fa fa-twitter"></i></a></li>
+  <li><a href="https://github.com/AnthGrow" class="GitHub"><i class="fa fa-Github"></i></a></li>
 
-  <li><a href="https://www.pinterest.com" class="pinterest"><i class="fa fa-pinterest"></i></a></li>
+  <li><a href="" class="LinkedIn"><i class="fa fa-LinkedIn"></i></a></li>
 
  
 
@@ -160,5 +160,7 @@ function AboutUs() {
 }
 
 export default AboutUs;
+
+          
 
           
