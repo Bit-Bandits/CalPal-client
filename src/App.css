@@ -57,21 +57,29 @@ button {
   max-width: 200px;
 }
 
+body {
+	font-family: Arial, sans-serif;
+	background-color: #f0f0f0;
+}
+
 .calorie-container {
-  display: flex;
-  flex-direction: column;
-  padding: 1rem;
-  border: 1px solid rgb(12, 226, 66);
-  border-radius: 10px;
-  margin: 0.5rem;
+	display: flex;
+	flex-direction: column;
+	padding: 2rem;
+	border: 1px solid #0ce242;
+	border-radius: 10px;
+	margin: 1rem;
+	background-color: #fff;
+	box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
 }
 
 .calorie-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.5rem;
-  border-bottom: 1px solid #ddd;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1rem;
+	border-bottom: 1px solid #ddd;
+	gap: 1rem;
 }
 
 .calorie-item:last-child {
@@ -80,16 +88,23 @@ button {
 
 .calorie-item input,
 .calorie-item select {
-  padding: 0.25;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-}
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
 
-.calorie-item input,
-.calorie-item select,
-.calorie-item button {
-  margin-left: 0.5rem;
-}
+  .calorie-item button {
+	padding: 0.5rem 1rem;
+	border: none;
+	border-radius: 5px;
+	background-color: rgb(106, 233, 255);
+	color: #fff;
+	transition: all 0.3s ease;
+  }
+
+  .calorie-item button:hover {
+	background-color: #057b17;
+  }
 
 .calorie-total {
   margin-top: 1rem;
@@ -99,45 +114,48 @@ button {
 /* Here is styling for search bar*/
 
 .search-form {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem;
-  border-radius: 10px;
-  background-color: rgb(240, 240, 240);
-  margin-bottom: 1rem;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1rem;
+	border-radius: 10px;
+	background-color: #fff;
+	margin-bottom: 1rem;
+	gap: 1rem;
 }
 
 .search-form input {
-  flex-grow: 1;
-  margin-right: 0.5rem;
-  padding: 0.5rem;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-}
+    flex-grow: 1;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
 
-.search-form button {
-  padding: 0.5rem 1rem;
-  border: none;
-  border-radius: 5px;
-  background-color: rgb(13, 165, 49);
-  color: #fff;
+  .search-form button {
+	padding: 0.5rem 1rem;
+	border: none;
+	border-radius: 5px;
+	background-color: #10a3dd;
+	color: #fff;
+	transition: all 0.3s ease;
 }
 
 .search-form button:hover {
-  background-color: rgb(5, 123, 23);
+	background-color: #0782b3;
 }
 
 /* ===== SEARCH RESULTS AND SAVED FOODS STYLES ===== */
 
 .foods-container {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  padding: 1rem;
-  border: 1px solid rgb(12, 226, 66);
-  border-radius: 10px;
-  margin: 0.5rem;
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+	padding: 1rem;
+	border: 1px solid #10a3dd;
+	border-radius: 10px;
+	margin: 1rem;
+	background-color: #fff;
+	box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
 }
 
 @media screen and (min-width: 800px) {
@@ -147,48 +165,74 @@ button {
   }
 }
 
-.search-results {
-  width: 100%;
-}
+.search-results,
+  .saved-foods {
+    width: 100%;
+    padding: 1rem;
+  }
 
-.saved-foods {
-  width: 100%;
-  background-color: rgb(240, 240, 240);
-  border-radius: 10px;
-  padding: 1rem;
+  .saved-foods {
+	background-color: #f0f0f0;
+	border-radius: 10px;
 }
 
 /* Buttons in the search results and saved foods sections */
 
 .calorie-item button,
 .saved-foods button {
-  padding: 0.5rem;
-  border: none;
-  border-radius: 5px;
-  background-color: rgb(13, 165, 49);
-  color: #fff;
-  margin-left: 0.5rem;
-}
+      padding: 0.5rem;
+      border: none;
+      border-radius: 5px;
+      background-color: #10a3dd;
+      color: #fff;
+      transition: all 0.3s ease;
+  }
 
-.calorie-item button:hover,
-.saved-foods button:hover {
-  background-color: rgb(5, 123, 23);
-}
+  .calorie-item button:hover,
+  .saved-foods button:hover {
+    background-color: #0782b3;
+  }
 
 /* Total calories */
 
 .calorie-total {
-  margin-top: 1rem;
-  font-weight: bold;
-  color: rgb(28, 175, 82);
-}
+    margin-top: 1rem;
+    font-weight: bold;
+    color: #10a3dd;
+  }
 
 .food-img {
-  width: 50px;
-  height: 50px;
-  object-fit: cover;
-  margin-right: 1rem;
-}
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 1rem;
+  }
+
+  .meal-item {
+	display: flex;
+	align-items: center;
+	  justify-content: space-between;
+	  padding: 10px;
+	  border: 1px solid #ccc;
+	  border-radius: 5px;
+	 margin-bottom: 10px;
+	  transition: background-color 0.3s, color 0.3s;
+  }
+
+  .meal-item:hover {
+	background: linear-gradient(to right, blue, white); 
+	  color: white; 
+  }
+  
+
+/* delete button*/
+.delete-button {
+	padding: 10px 20px;
+	margin-bottom: 10px; 
+	display: block;
+  }
+
 .section-white {
 	background: #fff;
 	padding: 70px 0;
