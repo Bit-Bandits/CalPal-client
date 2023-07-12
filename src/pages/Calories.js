@@ -233,10 +233,10 @@ function Calories() {
 
   const savedFoodList = mealsFromDatabase.map((meals) => {
     return (
-      <li key={meals._id}>
+      <li key={meals._id} className="meal-item">
         {meals.food} | Servings: {meals.servings} | Calories:{" "}
         {Math.round(meals.calories)}
-        <button onClick={() => handleDeleteFood(meals)}>Delete</button>
+        <button className="delete-button" onClick={() => handleDeleteFood(meals)}>Delete</button>
       </li>
     );
   });
