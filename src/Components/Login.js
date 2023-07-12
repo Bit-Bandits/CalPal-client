@@ -27,6 +27,7 @@ export const Login = (props) => {
     return (
         <div className="auth-form-container">
             <h2>Login</h2>
+            <h4 style={{ color: 'red' }}>{wrongInfo}</h4>
             <form className="login-form" onSubmit={handleSubmit}>
                 <label htmlFor="email">email</label>
                 <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" placeholder="youremail@gmail.com" id="email" name="email" />
@@ -35,7 +36,6 @@ export const Login = (props) => {
                 <button type="submit">Log In</button>
             </form>
             <button className="link-btn" onClick={() => props.onFormSwitch()}>Don't have an account? Register here.</button>
-            <h3 style={{ color: 'red' }}>{wrongInfo}</h3>
         </div>
     )
 }
