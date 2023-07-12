@@ -79,8 +79,7 @@ function Calories() {
         setFoodData([]);
       }
       
-      // setFoodData(data.hints.map(item => ({ ...item, servings: 1 , unit: 'gram' })))
-      // setFoodData(data.hints.map(item => ({ ...item, servings: 1 })))
+   
     } catch (e) {
       console.log(e);
     }
