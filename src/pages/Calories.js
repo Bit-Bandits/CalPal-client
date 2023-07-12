@@ -14,6 +14,7 @@ function Calories() {
   const [food, setFood] = useState("");
   const [totalCalories, setTotalCalories] = useState(0); // new state variables for adding total calories
   const [currentDate, setCurrentDate] = useState("");
+  const [noFoodDataSearch, setNoFoodDataSearch] = useState("");
 
   const Navigate = useNavigate();
 
@@ -71,7 +72,10 @@ function Calories() {
       if (data.hints && data.hints.length > 0) {
         const firstHint = data.hints[0];
         setFoodData([{ ...firstHint, servings: 1 }]);
+        setNoFoodDataSearch("");
       } else {
+        setNoFoodDataSearch("No search results: Please try again!");
+        console.log('did not return data');
         setFoodData([]);
       }
       
@@ -115,7 +119,7 @@ function Calories() {
   });
 
   const mealsFromDatabase = data?.getMealsByUsernameAndDate;
-  console.log("meals from database:", mealsFromDatabase);
+  // console.log("meals from database:", mealsFromDatabase);
 
   
   useEffect(() => {
@@ -254,6 +258,7 @@ function Calories() {
           />
           <button type="submit">Search</button>
         </form>
+        <h4 style={{ color: 'red' }}>{noFoodDataSearch}</h4>
         <ul>{list}</ul>
       </div>
 
