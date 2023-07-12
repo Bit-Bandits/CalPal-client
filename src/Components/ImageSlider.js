@@ -1,8 +1,8 @@
 import { useState } from "react";
 const slideStyles = {
-  width: "190%",
+  width: "100%",
   height: "210%",
-  margin: " 49px",
+  // margin: " 49px",
   borderRadius: "30px",
   backgroundSize: "cover",
   backgroundPosition: "center",
@@ -11,7 +11,7 @@ const rightArrowStyles = {
   position: "absolute",
   top: "130%",
   transform: "translate(0, -50%)",
-  right: "-400px",
+  right: "100px",
   fontSize: "45px",
   color: "#fff",
   zIndex: 1,
@@ -58,7 +58,25 @@ const ImageSlider = ({ slides }) => {
   console.log(slides[0]);
   const slideStylesWidthBackground = {
     ...slideStyles,
+    width: "100%",
+    display: "flex",
+    justifyContent: "center",
+    // bavkgroundSize: "cover",
+    // backgroundImage: `url(${slides[currentIndex].src})`,
+  };
+
+  const slideImages = {
+    ...slideStyles,
+    width: "60%",
+    height: "550px",
+    backgroundSize: "cover",
     backgroundImage: `url(${slides[currentIndex].src})`,
+  };
+
+  const slideText = {
+    ...slideStyles,
+    width: "40%",
+    padding: "20px"
   };
   return (
     <div style={sliderStyles}>
@@ -70,7 +88,10 @@ const ImageSlider = ({ slides }) => {
           ❱
         </div>
       </div>
-      <div style={slideStylesWidthBackground}></div>
+      <div style={slideStylesWidthBackground}>
+        <h1 style={slideText}>{slides[currentIndex].title}</h1>
+        <div style={slideImages}></div>
+      </div>
       <div style={dotsContainerStyles}>
         {slides.map((slide, slideIndex) => (
           <div
