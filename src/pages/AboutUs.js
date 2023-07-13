@@ -2,165 +2,174 @@ import React from 'react';
 
 
 function AboutUs() {
-  let message = ``;
-  return (
-    <section className="section-white">
+let message = ``;
+return (
+<section className=" flex place-content-center section-white">
 
-      <div className="container">
+  <div className="container">
 
-        <div className="row">
+            <div className=" justify-content-center">
 
-          <div className="col-md-12 text-center">
+            <div className=" col-md-12 text-center">
 
             <h2 id ="about-us" className="section-title">The Team Behind Calpal</h2>
 
             <p className="section-subtitle">{message}</p>
 
-          </div>
-          
-          <div className="col-sm-6 col-md-4">
+            </div>
 
-<div className="team-item">
+  <div className="flex  justify-center	items-stretch place-items-center place-content-center	 flex-nowrap flex-row gap-10 place-content-center">  
 
-  <img src="https://www.linkpicture.com/q/345454302_249964134275081_1706394919925166623_n.jpeg" className="team-img" alt="pic" />
-  <h3>Goldie Rizova</h3>
-  <div className="team-info"><p>Software Engineer</p></div>
-  <p>I am a Software Engineer currently in a bootcamp.</p>
+            <div className=" col-sm-6 col-md-4">
 
-  <ul className="team-icon">
+            <div className=" team-item">
 
-    <li><a href="https://github.com/Goldie369" className="GitHub">
-      <i className="fa fa-Github"></i>
-    </a></li>
+                  <img src="https://www.linkpicture.com/q/345454302_249964134275081_1706394919925166623_n.jpeg" className="team-img" alt="pic" />
+                  <h3>Goldie Rizova</h3>
+                  <div className="team-info"><p>Software Engineer</p></div>
 
-    <li><a href="https://www.linkedin.com/in/zlatelina-rizova-6b7487266/" className="LinkedIn">
-      <i className="fa fa-LinkedIn"></i>
-    </a></li>
+                  <ul className="team-icon">
 
+                  <li><a href="https://github.com/Goldie369" target="_blank" rel="noreferrer" className="GitHub">
+                  <i className="fa-brands fa-github"></i>
+                  </a></li>
 
-  </ul>
+                  <li><a href="https://www.linkedin.com/in/zlatelina-rizova-6b7487266/" target="_blank" rel="noreferrer" className="LinkedIn">
+                  <i className="fa-brands fa-linkedin-in"></i>
+                  </a></li>
 
 
-</div>
-</div>
-<div className="col-sm-6 col-md-4">
+                  </ul>
 
-<div className="team-item">
+            </div>
+            </div>
 
-  <img src="https://www.linkpicture.com/q/me_3.jpg" className="team-img" alt="pic" />
-  <h3>Mohamed Elhelw</h3>
-  <div className="team-info"><p>Software Engineer</p></div>
-  <p>Full stack web developer.</p>
+            <div className="col-sm-6 col-md-4">
 
-  <ul className="team-icon">
+            <div className="team-item">
 
-    <li><a href="https://github.com/melhelow" className="GitHub">
-      <i className="fa fa-Github"></i>
-    </a></li>
+            <img src="https://www.linkpicture.com/q/me_3.jpg" className="team-img" alt="pic" />
+            <h3>Mohamed Elhelw</h3>
+            <div className="team-info"><p>Software Engineer</p></div>
+            {/* <p>Full stack web developer with a passion for turning ideas into results</p> */}
 
-    <li><a href="https://www.linkedin.com/in/mohamed-elhelw-76a888271/" className="LinkedIn">
-      <i className="fa fa-LinkedIn"></i>
-    </a></li>
+            <ul className="team-icon">
 
- 
+            <li><a href="https://github.com/melhelow"  target="_blank" rel="noreferrer" className="GitHub">
+            <i className="fa-brands fa-github"></i>
+            </a></li>
 
-  </ul>
-
-
-</div>
-</div>
-
-<div className="col-sm-6 col-md-4">
-
-<div className="team-item">
-
-  <img src="https://www.linkpicture.com/q/IMG_9280_1.jpg" className="team-img" alt="pic" />
-
-  <h3>Matt Wagner</h3>
-
-  <div className="team-info"><p>Junior Engineer</p></div>
-
-  <p>About me</p>
-
-  <ul className="team-icon">
-
-    <li><a href="https://github.com/orgs/Bit-Bandits/people/mattwagner28" className="Github"><i className="fa fa-Github"></i></a></li>
-
-    <li><a href="https://www.linkedin.com/in/matthewtwagner" className="LinkedIn"><i className="fa fa-LinkedIn"></i></a></li>
+            <li><a href="https://www.linkedin.com/in/mohamed-elhelw-76a888271/" target="_blank"  rel="noreferrer" className="LinkedIn">
+            <i className="fa-brands fa-linkedin-in"></i>
+            </a></li>
 
 
 
-  </ul>
-
-</div>
-
-</div>
-
-<div className="col-sm-6 col-md-4">
-
-<div className="team-item">
-
-  <img src="https://www.linkpicture.com/q/hey-me.jpg" className="team-img" alt="pic" />
-
-  <h3>José Segura</h3>
-
-  <div className="team-info"><p>Junior Engineer</p></div>
-
-  <p> Junior Engineer</p>
-
-  <ul className="team-icon">
-
-    <li><a href="https://github.com/Jose-seg" className="GitHub"><i className="fa fa-GitHub"></i></a></li>
-
-    <li><a href="https://www.linkedin.com/in/jose-segura-7a998319a" className="LinkedIn"><i className="fa fa-LinkedIn"></i></a></li>
+            </ul>
 
 
+            </div>
+            </div>
 
-  </ul>
+            <div className="col-sm-6 col-md-4">
 
-</div>
+            <div className="team-item">
+
+            <img src="https://www.linkpicture.com/q/IMG_9280_1.jpg" className="team-img" alt="pic" />
+
+            <h3>Matt Wagner</h3>
+
+            <div className="team-info"><p>Junior Engineer</p></div>
 
 
-</div>
+            <ul className="team-icon">
 
-</div>
-<div className="col-sm-6 col-md-4">
+            <li><a href="https://github.com/orgs/Bit-Bandits/people/mattwagner28" target="_blank" rel="noreferrer" className="GitHub">
+            <i className="fa-brands fa-github"></i>
+            </a></li>
 
-<div className="team-item">
+            <li><a href="https://www.linkedin.com/in/matthewtwagner" target="_blank" rel="noreferrer" className="LinkedIn">
+            <i className="fa-brands fa-linkedin-in"></i>
+              </a></li>
 
-<img src="https://www.linkpicture.com/q/AntBioPic.jpeg" className="team-img" alt="pic" />
 
-<h3>Anthony Groce</h3>
 
-<div className="team-info"><p>Junior Engineer</p></div>
+            </ul>
 
-<p>About me</p>
+            </div>
 
-<ul className="team-icon">
+            </div>
 
-  <li><a href="https://github.com/AnthGrow" className="GitHub"><i className="fa fa-Github"></i></a></li>
+            <div className="col-sm-6 col-md-4">
 
-  <li><a href="www.example.com" className="LinkedIn"><i className="fa fa-LinkedIn"></i></a></li>
+            <div className="team-item">
 
- 
+            <img src="https://www.linkpicture.com/q/hey-me.jpg" className="team-img" alt="pic" />
 
-</ul>
+            <h3>José Segura</h3>
 
-</div>
+            <div className="team-info"><p>Junior Engineer</p></div>
 
-          
 
-        </div>
-        
-      </div>
-      
+            <ul className="team-icon">
 
-    </section>
-  )
+            <li><a href="https://github.com/Jose-seg" target="_blank" rel="noreferrer" className="GitHub">
+            <i class="fa-brands fa-github"></i>
+            </a></li>
+
+            <li><a href="https://www.linkedin.com/in/jose-segura-7a998319a" target="_blank" rel="noreferrer" className="LinkedIn">
+            <i class="fa-brands fa-linkedin-in"></i>
+              </a></li>
+
+
+            </ul>
+
+            </div>
+
+
+            </div>
+            <div className="col-sm-6 col-md-4">
+
+            <div className="team-item">
+
+            <img src="https://www.linkpicture.com/q/CoderAnthony.png" className="team-img" alt="pic" />
+
+            <h3>Anthony Groce</h3>
+
+            <div className="team-info"><p>Junior Engineer</p></div>
+
+
+            <ul className="team-icon">
+
+            <li><a href="https://github.com/AnthGrow" target="_blank"  rel="noreferrer" className="GitHub">
+            <i class="fa-brands fa-github"></i>
+            </a></li>
+
+            <li><a href="https://www.linkedin.com/in/anthonygroce/" target="_blank" rel="noreferrer" className="LinkedIn">
+            <i class="fa-brands fa-linkedin-in"></i>
+              </a></li>
+
+
+
+            </ul>
+
+            </div>
+
+
+
+            </div>
+
+            </div>
+
+
+            </div>
+            </div>
+
+
+</section>
+)
 }
 
 export default AboutUs;
 
-          
 
-          
