@@ -8,25 +8,25 @@ import Image2 from '../assets/2.jpg';
 
 const Homepage = () => {
   const slides = [
-    { src: Image1, title: "CalPal, your ultimate companion in the journey towards a healthier lifestyle! " },
-    { src: Image2, title: "CalPal is the innovative application that will revolutionize the way you manage your daily caloric intake" },
+    { src: Image1, title: "CalPal, your ultimate companion in the journey towards a healthier lifestyle!" },
+    { src: Image2, title: "CalPal is the innovative application that will revolutionize the way you manage your daily caloric intake." },
     { src: Image3, title: "are you ready to embark on a transformative journey towards a fitter, happier lifestyle? "}
   
   ];
 
-  const containerStyles = {
-    width: "100%",
-    height: "279px",
-  };
-
   return (
-    <div>
-      <h1 className="home">Welcome to Calpal</h1>
-      <div className="test" style={containerStyles}>
-        <ImageSlider slides={slides} />
-      </div>
+
+<div className="text-center">
+  <h1 className="font-bold text-4xl mb-4 mt-6">
+    Welcome to Calpal
+  </h1>
+  <div className="flex flex-col items-center shadow">
+    <div className="mt-8">
+      <ImageSlider slides={slides} />
     </div>
-  );
-};
+  </div>
+</div>
+)};
 
 export default Homepage;
+
