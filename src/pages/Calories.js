@@ -64,7 +64,8 @@ function Calories() {
 
 
   const fetchFoodData = async () => {
-    const apiUrl = `https://api.edamam.com/api/food-database/v2/parser?ingr=${encodeURIComponent(food)}&app_id=314fbe88&app_key=${process.env.REACT_APP_API_KEY}`;
+   
+    const apiUrl = `https://api.edamam.com/api/food-database/v2/parser?ingr=${encodeURIComponent(food)}&app_id=314fbe88&app_key=25dfafdd8b307eb5f55d06bca92f4d08`;
     console.log("apiUrl:", apiUrl);
     try {
       const response = await fetch(apiUrl);
