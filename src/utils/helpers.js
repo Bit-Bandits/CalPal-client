@@ -5,7 +5,6 @@ export const getUsernameFromToken = () => {
   if (token) {
     const decodedToken = decode(token);
     return decodedToken.data.username;
-    // console.log('decoded Token ID', decodedToken.data);
   }
   return "";
 };

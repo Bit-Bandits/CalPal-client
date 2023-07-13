@@ -15,10 +15,8 @@ const Homepage = () => {
   ];
 
   const containerStyles = {
-    // width: "500px",
     width: "100%",
     height: "279px",
-    // margin: "0 auto",
   };
 
   return (

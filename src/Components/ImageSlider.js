@@ -2,7 +2,7 @@ import { useState } from "react";
 const slideStyles = {
   width: "100%",
   height: "210%",
-  // margin: " 49px",
+ 
   borderRadius: "30px",
   backgroundSize: "cover",
   backgroundPosition: "center",
@@ -61,8 +61,7 @@ const ImageSlider = ({ slides }) => {
     width: "100%",
     display: "flex",
     justifyContent: "center",
-    // bavkgroundSize: "cover",
-    // backgroundImage: `url(${slides[currentIndex].src})`,
+ 
   };
 
   const slideImages = {
