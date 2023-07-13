@@ -9,21 +9,21 @@ const slideStyles = {
 };
 const rightArrowStyles = {
   position: "absolute",
-  top: "130%",
+  top: "100%",
   transform: "translate(0, -50%)",
-  right: "100px",
+  right: "0px",
   fontSize: "45px",
-  color: "#fff",
+  color: "grey",
   zIndex: 1,
   cursor: "pointer",
 };
 const leftArrowStyles = {
   position: "absolute",
-  top: "130%",
+  top: "100%",
   transform: "translate(0, -50%)",
-  left: "100px",
+  left: "350px",
   fontSize: "45px",
-  color: "#fff",
+  color: "grey",
   zIndex: 1,
   cursor: "pointer",
 };

@@ -20,8 +20,8 @@ const Homepage = () => {
   <h1 className="font-bold text-4xl mb-4 mt-6">
     Welcome to Calpal
   </h1>
-  <div className="flex flex-col items-center shadow">
-    <div className="mt-8">
+  <div className="flex flex-col  items-center">
+    <div className="mt-4">
       <ImageSlider slides={slides} />
     </div>
   </div>
