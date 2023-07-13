@@ -96,7 +96,6 @@ function Calories() {
       setSavedFoods(
         savedFoods.filter((meals) => meals._id !== foodToDelete._id)
       );
-      // setTotalCalories(totalCalories - foodToDelete.calories);
     } catch (error) {
       console.error("Error deleting food:", error);
       console.log("food to delete:", foodToDelete);
@@ -119,14 +118,10 @@ function Calories() {
   });
 
   const mealsFromDatabase = data?.getMealsByUsernameAndDate;
-  // console.log("meals from database:", mealsFromDatabase);
 
   
   useEffect(() => {
-    // const total = mealsFromDatabase?.reduce((sum, meal) => {
-    //   return sum + Math.round(parseInt(meal.calories));
-    // });
-
+ 
     let total = 0;
     mealsFromDatabase?.forEach(meal => {
       total = total + meal.calories
@@ -144,9 +139,6 @@ function Calories() {
   if (error) {
     return <p>Error: {error.message}</p>;
   }
-
-
-
 
 
   const handleSaveFood = async (food) => {
@@ -169,9 +161,7 @@ function Calories() {
     console.log("calories:", savedFood.calories);
     console.log("servings:", savedFood.servings);
 
-    // setTotalCalories(totalCalories + calories);
     setSavedFoods([...savedFoods, mealsFromDatabase]);
-    // console.log('saved foods:', [...savedFoods, { ...meals }]);
     console.log("saved foods:", savedFoods);
 
     // Saves username, food, calories, servings, and data to database
@@ -195,15 +185,12 @@ function Calories() {
     Navigate("/dashboard");
   };
 
-  // console.table(foodData.hints)
   const list = foodData.map((food, index) => {
     const calories = Math.round(food.food.nutrients.ENERC_KCAL * food.servings);
     return (
       <li className="calorie-item" key={food.food.foodId}>
         <img src={food.food.image} alt={food.food.label} className="food-img" />{" "}
-        {/* New image elment */}
         {food.food.label} | Calories: {calories}
-        {/* if logged in, show save button */}
         {Auth.loggedIn() ? (
           <>
             <input
@@ -215,25 +202,12 @@ function Calories() {
             <button onClick={() => handleSaveFood(food)}>Save</button>
           </>
         ) : null}
-        {/* <select value={food.unit} onChange={(e) => handleUnitChange(index, e.target.value)}>
-                    <option value="gram">Gram</option>
-                    <option value="lb">Pound</option>
-                    <option value="oz">Ounce</option>
-                    <option value="fl oz">Fl Oz</option>
-                </select> */}
+       
       </li>
     );
   });
 
-  // const savedFoodList = savedFoods.map((food, index) => {
-  //     return (
-
-  //         <li key={index}>
-  //             {food.food.label} | Servings: {food.servings} | Calories: {Math.round(food.calories)}
-  //             <button onClick={() => handleDeleteFood(food)}>Delete</button>
-  //         </li>
-  //     )
-  // })
+ 
 
   const savedFoodList = mealsFromDatabase.map((meals) => {
     return (
@@ -266,13 +240,11 @@ function Calories() {
         <h2>Current Date: {currentDate}</h2>
         <h3>Saved Foods</h3>
         <ul>
-          {/* <SavedMealsTEST username={getUsernameFromToken()} date={getFormattedDate()}/> */}
           {savedFoodList}
         </ul>
         <h3 className="calorie-total">Total Calores: {totalCalories}</h3>
         <button onClick={goToDashboard}>Go to Dashboard</button>
       </div>
-      {/* <SavedMeals username={getUsernameFromToken()} date={getFormattedDate()}/> */}
     </div>
   );
 }
