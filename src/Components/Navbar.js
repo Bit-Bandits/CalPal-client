@@ -18,14 +18,14 @@ const Navbar = () => {
   ]
 
   return (
-    <nav className="flex justify-center text-center bg-[#35CBD2] py-0">
-      <div className="flex items-center flex-shrink-0 text-white mr-6">
+    <nav className="flex  text-center  text-xl bg-[#35CBD2] pl-20">
+      <div className="flex justify-center items-center flex-shrink-0 text-white mr-6">
        <img src={logo[0].src} alt="logo" className="h-40 w-15 mr-3" />
         <span className="font-semibold text-3xl tracking-tight">Calpal</span>
       </div>
  
-      <div className="w-full  flex-grow lg:flex lg:items-center lg:w-auto  ">
-        <div className=" flex text-lg:flex-grow ">
+      <div className="w-full flex justify-evenly justify-center flex-grow lg:flex lg:items-center lg:w-auto  ">
+        <div className=" flex  justify-center text-lg:flex-grow ">
           <a href="/" className="block mt-4 lg:inline-block lg:mt-0 text-teal-200 hover:text-white mr-4">
             Home
           </a>
