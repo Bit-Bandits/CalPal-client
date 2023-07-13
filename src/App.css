@@ -298,10 +298,10 @@ body {
 }
 
 .team-item h3{
-	margin:20px 0 1px 0!important;
+	margin:30px 0 1px 0!important;
 	color:#454545;
 	font-size:18px;
-	font-weight: 700;
+	font-weight: 1100;
 	text-transform:uppercase;
 	transition: all .25s ease-in-out;
 	-moz-transition: all .25s ease-in-out;
@@ -317,7 +317,7 @@ body {
 }
 
 .team-info {
-	display: block;
+	display: flex;
 	margin-bottom:0;
 }
 
@@ -340,12 +340,13 @@ body {
 }
 
 .team-img{
-	max-width: 140px;
-	padding: 6px 6px;
+	margin: 0 auto;
+	width: auto;
     background-color: #dedede;
 	-webkit-border-radius: 50%;
 	-moz-border-radius: 50%;
 	border-radius: 50%;
+	
 }
 
 ul.team-icon {
@@ -375,21 +376,15 @@ ul.team-icon li a{
 	color:#fff;
 }
 
-ul.team-icon li a.twitter{
+ul.team-icon li a.GitHub{
 	background-color: #4099ff;
 }
 
-ul.team-icon li a.pinterest{
+ul.team-icon li a.LinkedIn{
 	background-color: #C92228;
 }
 
-ul.team-icon li a.facebook{
-	background-color: #3b5998;
-}
 
-ul.team-icon li a.dribble{
-	background-color: #ea4c89;
-}
 
 .team-icon li a:hover{
 	color:#dedede;

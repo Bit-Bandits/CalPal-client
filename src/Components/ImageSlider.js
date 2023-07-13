@@ -76,7 +76,9 @@ const ImageSlider = ({ slides }) => {
   const slideText = {
     ...slideStyles,
     width: "40%",
-    padding: "20px"
+    padding: "20px",
+    fontSize: "30px",
+    
   };
   return (
     <div style={sliderStyles}>
