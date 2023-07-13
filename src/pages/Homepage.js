@@ -8,7 +8,7 @@ import Image2 from '../assets/2.jpg';
 
 const Homepage = () => {
   const slides = [
-    { src: Image1, title: "CalPal, your ultimate companion in the journey towards a healthier lifestyle! Are you tired of tedious manual tracking and complex calorie calculations? " },
+    { src: Image1, title: "CalPal, your ultimate companion in the journey towards a healthier lifestyle! " },
     { src: Image2, title: "CalPal is the innovative application that will revolutionize the way you manage your daily caloric intake" },
     { src: Image3, title: "are you ready to embark on a transformative journey towards a fitter, happier lifestyle? "}
   
@@ -21,8 +21,8 @@ const Homepage = () => {
 
   return (
     <div>
-      <h1 id="home">Welcome to Calpal</h1>
-      <div id="test" style={containerStyles}>
+      <h1 className="home">Welcome to Calpal</h1>
+      <div className="test" style={containerStyles}>
         <ImageSlider slides={slides} />
       </div>
     </div>

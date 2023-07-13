@@ -525,9 +525,21 @@ font-size: 30px;
   margin: auto;
 
 }
-#home{
-	font-size: 30px;
+.home{
+font-size: 30px;
 width: 350px;
 margin: auto;
-margin-top: 2%;
+margin-top: 1%;
+padding-bottom: 1%;
+}
+.test {
+  font-size: 10px;
+  flex-direction: column;
+  /* margin-left: 10%; */
+  
+  /* width: 350px;
+  margin: auto;
+  margin-top: 1%;
+  padding-bottom: 1%; */
+  
 }
