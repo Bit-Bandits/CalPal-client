@@ -14,24 +14,13 @@ const Homepage = () => {
   
   ];
 
-  // const containerStyles = {
-  //   width: "100%",
-  //   height: "279px",
-  // };
-
   return (
-//     <div style={{ textAlign: "center" }}>
-//       <h1 className="home">Welcome to Calpal</h1>
-//       <div className="test" style={{ margin: "20px auto", width: "80%" }}>
-//         <ImageSlider slides={slides} />
-//       </div>
-//     </div>
-//   );
-// };
 
 <div className="text-center">
-  <h1 className="font-bold text-4xl mb-4 mt-6">Welcome to Calpal</h1>
-  <div className="flex flex-col items-center">
+  <h1 className="font-bold text-4xl mb-4 mt-6">
+    Welcome to Calpal
+  </h1>
+  <div className="flex flex-col items-center shadow">
     <div className="mt-8">
       <ImageSlider slides={slides} />
     </div>
